@@ -1,0 +1,16 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <label for='username'>
+        username :
+    </label>
+    <input id='username' type="text" (ngModelChange)="onChange()" formControlName = 'username'>
+    <br>
+    <label for='password'>
+        password :
+    </label>
+    <input id='password' (ngModelChange)="onChange()" type="password" formControlName = 'password'>
+    <br>
+    <div *ngIf = "message">
+        {{message}}
+    </div>
+    <button type="submit">Submit</button>
+</form>

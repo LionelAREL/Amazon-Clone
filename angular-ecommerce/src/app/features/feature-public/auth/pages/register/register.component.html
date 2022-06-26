@@ -1,0 +1,26 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <label for='username'>
+        username :
+    </label>
+    <input id='username' type="text" formControlName = 'username'>
+    <br>
+    <label for='firstName'>
+        firstName :
+    </label>
+    <input id='firstName' type="text" formControlName = 'firstName'>
+    <br>
+    <label for='lastName'>
+        lastName :
+    </label>
+    <input id='lastName' type="text" formControlName = 'lastName'>
+    <br>
+    <label for='password'>
+        password :
+    </label>
+    <input id='password' type="password" formControlName = 'password'>
+    <br>
+    <div *ngIf = "message">
+        {{message}}
+    </div>
+    <button type="submit">Submit</button>
+</form>

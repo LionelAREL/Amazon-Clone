@@ -1,0 +1,43 @@
+<nav>
+    <ul>
+        <li>
+            <a routerLink="/home">home</a>
+        </li>
+        <li>
+            <a routerLink="/login">login</a>
+        </li>
+        <li>
+            <a routerLink="/register">register</a>
+        </li>
+        <li>
+            <a routerLink="/product-list">product</a>
+        </li>
+        <li>
+            <a routerLink="/cart">cart</a>
+        </li>
+        <li>
+            <a routerLink="" (click) = "logout()">logout</a>
+        </li>
+        <li>
+            <a routerLink="/account" >account</a>
+        </li>
+        <li>
+            <a routerLink="/account/connexion-security" >connexion-security</a>
+        </li>
+        <li>
+            <a routerLink="/payment" >payment</a>
+        </li>
+        <li>
+            <a routerLink="" (click) = "logout()">logout</a>
+        </li>
+        <div *ngIf = "logoutMessage">
+            {{logoutMessage}}
+        </div>
+    </ul>
+    <form>
+        <input #input type="text">
+        <button (click) = "submit($event,input)">chercher</button>
+    </form>
+    <div> cart : {{cartNumber}}</div>
+    <div *ngIf="address">address : {{address}}</div>
+</nav>
