@@ -26,13 +26,13 @@ const routes: Routes = [
       {
         path:'',
         loadChildren: () => import('./product/product-routing.module').then(mod => mod.ProductRoutingModule),
-        runGuardsAndResolvers: 'always'
       },
       {
         path:'',
         loadChildren: () => import('./cart/cart-routing.module').then(mod => mod.CartRoutingModule),
       },
       {
+        canActivate:[AuthGuard],
         path:'account',
         loadChildren: () => import('./account/account-routing.module').then(mod => mod.AccountRoutingModule),
       },
@@ -41,6 +41,7 @@ const routes: Routes = [
         loadChildren: () => import('./error/error-routing.module').then(mod => mod.ErrorRoutingModule),
       },
       {
+        canActivate:[AuthGuard],
         path:'',
         loadChildren: () => import('./payment/payment-routing.module').then(mod => mod.PaymentRoutingModule),
       },

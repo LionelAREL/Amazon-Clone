@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FetchDataService } from 'src/app/core/service/fetch-data.service';
 
 @Component({
   selector: 'app-recap',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecapComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fetchData:FetchDataService, private router:Router) { }
 
   ngOnInit(): void {
   }
 
+  message:string = "";
+
+  payment(){
+    this.fetchData.stripeUrl().subscribe({
+      next:(link:any) => {
+        window.location.href = link.payment_url;},
+      error:(error) => {
+        this.message = error;
+      }
+    })
+  }
 }

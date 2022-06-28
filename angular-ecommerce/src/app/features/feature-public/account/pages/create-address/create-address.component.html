@@ -1,1 +1,25 @@
-<p>create-address works!</p>
+<form [formGroup]="addressForm" (ngSubmit)="submit()">
+    <h2>Address</h2>
+  
+    <label for="address_line_1">Address_line_1: </label>
+    <input id="address_line_1" type="text" formControlName="address_line_1">
+  
+    <label for="address_line_2">Address_line_2: </label>
+    <input id="address_line_2" type="text" formControlName="address_line_2">
+
+    <label for="city">city: </label>
+    <input id="city" type="text" formControlName="city">
+
+    <label for="zip_code">zip_code: </label>
+    <input id="zip_code" type="text" formControlName="zip_code">
+
+    <label for="default">default: </label>
+    <input id="default" type="checkbox" formControlName="default">
+
+    <button type="submit" [disabled]="!addressForm.valid">Submit</button>
+  
+</form>
+
+<div *ngIf="message">
+    {{message}}
+</div>

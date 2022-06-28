@@ -24,3 +24,8 @@ class UserPublicSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
         fields = ['username', 'first_name', 'last_name','last_login']
+
+class UserPublicEditSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ['username', 'first_name', 'last_name']

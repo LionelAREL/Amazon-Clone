@@ -12,7 +12,6 @@ import { EventService } from 'src/app/core/service/event.service';
 export class ProductListComponent implements OnInit {
 
   products:any[] = [];
-  search:string = "";
   messageError:string = "";
 
   constructor(private fetchData:FetchDataService,private route: ActivatedRoute, private router: Router,private eventService:EventService) {}
@@ -24,12 +23,13 @@ export class ProductListComponent implements OnInit {
     else{
       this.config.currentPage = 1;
     }
-    this.getProducts(this.config.currentPage);
 
-    this.eventService.event("searchEmmit").subscribe((event)=>{
-      this.config.currentPage = 1;
-      this.getProducts(this.config.currentPage);
-    })
+    this.route.queryParams.subscribe({ 
+        next: (params:any) => {
+          console.log(params);
+          this.getProducts(params);
+        }
+    });
   }
 
   public filter: string = '';
@@ -54,20 +54,19 @@ export class ProductListComponent implements OnInit {
 
   onPageChange(number: number) {
       this.config.currentPage = number;
-      this.router.navigate(['/product-list'], {queryParams: {page:number}});
-      this.getProducts(number);
+      this.router.navigate(['/product-list'], {queryParams: {page:number},queryParamsHandling: "merge" });
   }
 
   onPageBoundsCorrection(number: number) {
       this.config.currentPage = number;
-      console.log(number);
   }
 
-  getProducts(pageNumber:number){
-    this.fetchData.products(pageNumber).subscribe({
+  getProducts(params:any){
+    this.fetchData.products(params).subscribe({
       next:(products:any) => {
         this.products = products.results;
         this.config.totalItems = products.count;
+        this.config.currentPage = params.page
       },
       error:(error) => {
         console.log(error)

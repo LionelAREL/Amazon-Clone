@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
-from rest_framework.generics import GenericAPIView, ListAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView, CreateAPIView
+from rest_framework.generics import GenericAPIView, ListAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView, CreateAPIView, RetrieveUpdateAPIView
 from .utils import *
 from .serializers import *
 from .models import *
@@ -17,6 +17,7 @@ import stripe
 from rest_framework.pagination import PageNumberPagination
 from rest_framework import filters
 from django_filters.rest_framework import DjangoFilterBackend
+from authentification.serializers import UserPublicEditSerializer
 
 
 """
@@ -57,8 +58,14 @@ class StandardResultsSetPagination(PageNumberPagination):
     max_page_size = 1000
                 
 """
-    Cart View
+    Public/Authenticated View
 """
+
+class UserPublicView(MultipleSerializerMixin, RetrieveUpdateAPIView):
+    update_serializer_class = UserPublicEditSerializer
+    serializer_class = UserPublicEditSerializer
+    def get_object(self):
+        return self.request.user
 
 class CartView(MultipleSerializerMixin, ListCreateAPIView):
     update_serializer_class = OrderItemCreateSerializer
@@ -193,7 +200,7 @@ class PaymentView(APIView):
 
 
 @method_decorator(csrf_exempt, name='dispatch')
-class WebHook(APIView):
+class WebHookStripeView(APIView):
     def post(self,request):
         stripe.api_key = 'sk_test_51KyVnpBtHPWEuLFwI33xUlMRcm2CY0WiFvtQt7D4tY8emMBAD0kK5s9aC0z1bN3c9bqAmBGVhPwWZN8KRbdeemRC00mxdVboJC'
         payload = request.body

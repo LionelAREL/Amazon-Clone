@@ -1,1 +1,7 @@
 <div>Votre Compte</div>
+<div class="container-addresses">
+    <app-add-address></app-add-address>
+    <div *ngFor="let address of addresses">
+        <app-address [address] = "address"></app-address>
+    </div>
+</div>

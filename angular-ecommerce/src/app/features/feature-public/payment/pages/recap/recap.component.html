@@ -1,1 +1,6 @@
-<p>recap works!</p>
+<app-edit-address></app-edit-address>
+<app-cart-list></app-cart-list>
+<button (click)="payment()">payment</button>
+<div *ngIf="message">
+    {{message}}
+</div>

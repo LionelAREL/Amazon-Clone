@@ -24,4 +24,6 @@ urlpatterns = [
     path('cart/<int:pk>', views.CartDetailView().as_view()),
     path('payment/', PaymentView().as_view()),
     path('selected-address/', AddressSelectedView().as_view()),
+    path('user/', UserPublicView().as_view()),
+    path('stripe-webhook/', WebHookStripeView().as_view()),
 ]
