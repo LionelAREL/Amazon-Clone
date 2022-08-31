@@ -1,5 +1,7 @@
 <div *ngFor="let product of products | paginate:config"> 
     {{product.name}}
+    <br>
+    <a [routerLink]="['/product',product.id]"> link </a>
 </div>
 
 <div *ngIf = "messageError">

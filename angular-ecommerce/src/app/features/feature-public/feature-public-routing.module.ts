@@ -41,7 +41,6 @@ const routes: Routes = [
         loadChildren: () => import('./error/error-routing.module').then(mod => mod.ErrorRoutingModule),
       },
       {
-        canActivate:[AuthGuard],
         path:'',
         loadChildren: () => import('./payment/payment-routing.module').then(mod => mod.PaymentRoutingModule),
       },

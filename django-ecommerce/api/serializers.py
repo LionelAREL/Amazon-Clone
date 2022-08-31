@@ -68,7 +68,9 @@ class OrderItemCreateSerializer(OrderItemValidation, serializers.ModelSerializer
         order= get_or_set_order(self.context['request'])
         if order.orderItems.filter(product__id = validated_data['product'].id).exists():
             tempOrderItem = order.orderItems.get(product=validated_data['product'])
-            tempOrderItem.quantity = validated_data['quantity']
+            tempOrderItem.quantity = validated_data['quantity'] + order.orderItems.filter(product__id = validated_data['product'].id).first().quantity
+            if tempOrderItem.quantity > 25 :
+                tempOrderItem.quantity= 25
             tempOrderItem.save()
             return tempOrderItem
         return OrderItem.objects.create(**validated_data,order=get_order(self.context['request']))

@@ -10,31 +10,11 @@ export class AuthGuard implements CanActivate {
   
   constructor(private authService: AuthService, private router: Router) {}
 
-  // canActivate(
-  //   route: ActivatedRouteSnapshot,
-  //   state: RouterStateSnapshot): true|UrlTree|false {
-  //   const url: string = state.url;
-
-  //   return this.checkLogin(url);
-  // }
-
-  // checkLogin(url: string): true|UrlTree|false {
-  //   if (this.authService.isLogged) { 
-  //     return true; 
-  //   }
-
-  //   // Store the attempted URL for redirecting
-  //   this.authService.redirectUrl = url;
-
-  //   // Redirect to the login page
-  //   return false;
-  // }
-
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean|UrlTree>|Promise<boolean|UrlTree>|boolean|UrlTree {
-    if (this.authService.isLogged){
+    if (this.authService.isLogged == true){
       return true;
     }
     return this.authService.session().pipe(
@@ -42,7 +22,7 @@ export class AuthGuard implements CanActivate {
         if(session.user != null){
           return true;
         }
-        return false;
+        return this.router.parseUrl("/login");
       }),
     );
   }

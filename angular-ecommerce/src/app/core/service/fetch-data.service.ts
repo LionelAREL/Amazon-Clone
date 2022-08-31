@@ -37,6 +37,11 @@ export class FetchDataService {
       catchError(handleErrorMessage<any>('product')),
       );
   }
+  product(id:string){
+    return this.http.get(this.BASE_URL + `product/${id}/` ,{withCredentials:true}).pipe(
+      catchError(handleErrorMessage<any>('product')),
+      );
+  }
 
   addresses(){
     return this.http.get(this.BASE_URL + "address/",this.httpOptions).pipe(
@@ -70,5 +75,13 @@ export class FetchDataService {
     return this.http.get(this.BASE_URL + "payment/",{withCredentials:true}).pipe(
       catchError(handleErrorMessage<any>('payment')),
     );
+  }
+
+  addToCart(productId:string,quantity:number){
+    return this.http.post(this.BASE_URL + `cart/`,{product:productId,quantity:quantity},this.httpOptions).pipe(
+      tap((data) => log(data)),
+      map((data:any) => data.detail),
+      catchError(handleErrorMessage<any>('cart')),
+      );
   }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { AuthService } from '../service/auth.service';
 
@@ -8,7 +8,7 @@ import { AuthService } from '../service/auth.service';
 })
 export class NoAuthGuard implements CanActivate {
 
-  constructor(private authService:AuthService){
+  constructor(private authService:AuthService,private router:Router){
 
   }
 
@@ -16,15 +16,14 @@ export class NoAuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean|UrlTree>|Promise<boolean|UrlTree>|boolean|UrlTree {
-    if (this.authService.isLogged){
-      return false;
-    }
     return this.authService.session().pipe(
       map((session) => {
         if(session.user != null){
-          return false;
+          return this.router.parseUrl("/home");
         }
-        return true;
+        else{
+          return true;
+        }
       }),
     );
   }

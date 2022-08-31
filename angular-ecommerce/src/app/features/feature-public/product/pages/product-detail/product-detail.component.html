@@ -1,1 +1,14 @@
-<p>product-detail works!</p>
+<div *ngIf="product">
+    {{product.name}}
+    <select #selectQuantity>
+        <option name="product.id" value="0">0</option>
+        <option name="product.id" value="1" selected>1</option>
+        <option *ngFor="let number of numberChoice" name="product.id" value="{{number}}">{{number}}</option>
+    </select>
+    <button (click)="addToCart(selectQuantity.value)">ajouter au panier</button>
+</div>
+
+<div *ngIf="messageError">
+    {{messageError}}
+</div>
+
