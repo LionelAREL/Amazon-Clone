@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-)$m!g+-^^#%%jd@wjvn!dkm2pt6yzro&bu-92#5j*e^f%u5!=h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -83,8 +83,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'angular_django_ecommerce',
+        'USER': 'postgres',
+        'PASSWORD': 'VRmIMWs0x18cTied88pa',
+        'HOST': 'angular-django-ecommerce-database.cr8pcsdso6dy.eu-west-3.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
