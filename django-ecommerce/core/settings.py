@@ -142,8 +142,6 @@ REST_FRAMEWORK = {
     ],
 }
 
-ALLOWED_HOSTS=['*']
-
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:4200',
     'http://127.0.0.1:4200',
@@ -165,6 +163,8 @@ SESSION_COOKIE_HTTPONLY = True
 
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 SESSION_ENGINE = 'session.backends.db'
 
