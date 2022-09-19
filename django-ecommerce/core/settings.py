@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-)$m!g+-^^#%%jd@wjvn!dkm2pt6yzro&bu-92#5j*e^f%u5!=h'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost',' 52.47.59.220','www.angular-lionel-arel.ga','angular-lionel-arel.ga']
 
 
 # Application definition
@@ -149,6 +149,9 @@ REST_FRAMEWORK = {
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:4200',
     'http://127.0.0.1:4200',
+    'https://52.47.59.220',
+    'https://www.angular-lionel-arel.ga',
+    'https://angular-lionel-arel.ga'
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -156,6 +159,9 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:4200',
     'http://127.0.0.1:4200',
+    'https://52.47.59.220',
+    'https://www.angular-lionel-arel.ga',
+    'https://angular-lionel-arel.ga'
 ]
 
 CORS_EXPOSE_HEADERS = ['Content-Type', 'X-CSRFToken']
@@ -163,7 +169,7 @@ CSRF_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SAMESITE = 'None'
 
 CSRF_COOKIE_HTTPONLY = False 
-SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_HTTPONLY = False
 
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
