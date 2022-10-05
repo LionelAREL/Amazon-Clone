@@ -1,6 +1,6 @@
 
 
 
-export interface AppState {
-    auth: AuthState;
-}
+// export interface AppState {
+//     auth: AuthState;
+// }

@@ -1,16 +1,25 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <label for='username'>
-        username :
-    </label>
-    <input id='username' type="text" (ngModelChange)="onChange()" formControlName = 'username'>
-    <br>
-    <label for='password'>
-        password :
-    </label>
-    <input id='password' (ngModelChange)="onChange()" type="password" formControlName = 'password'>
-    <br>
+Sign in
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" [ngSwitch]="this.currentStep">
+    <div *ngIf="this.currentStep === 'passwordInfo'">
+        {{this.loginForm.controls.email.value}} 
+        <a href="" (click)="changeStep($event,false)">change</a>
+    </div>
+    <app-input-card *ngSwitchCase="'emailInfo'">
+        <label for="email">email : </label>
+        <input id="email" type="text" [formControl]="this.loginForm.controls.email">
+        <div *ngIf="this.loginForm.controls.email.errors?.['required'] && setError">
+            email is required.
+          </div>
+    </app-input-card>
+    <app-input-card *ngSwitchCase="'passwordInfo'">
+        <label for="password">password: </label><a href="">forgot your password ?</a>
+        <input id="password" type="password" [formControl]="this.loginForm.controls.password">
+    </app-input-card>
     <div *ngIf = "message">
         {{message}}
     </div>
-    <button type="submit">Submit</button>
+    <button *ngIf="this.currentStep === 'emailInfo'" (click)="changeStep($event,true)">Proceed</button>
+    <button *ngIf="this.currentStep === 'passwordInfo'" type="submit">Register</button>
 </form>
+
+<button *ngIf="this.currentStep === 'emailInfo'" href="">Create your amazon account</button>

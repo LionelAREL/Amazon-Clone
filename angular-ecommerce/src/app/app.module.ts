@@ -14,7 +14,7 @@ import { PublicLayoutComponent } from './layout/public-layout/public-layout.comp
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
 import { AdminFooterComponent } from './layout/nav-bar/admin-footer/admin-footer.component';
 import { AdminHeaderComponent } from './layout/nav-bar/admin-header/admin-header.component';
-import { environment } from '../environments/environment'; // Angular CLI environment
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ import { environment } from '../environments/environment'; // Angular CLI enviro
     PublicLayoutComponent,
     AdminLayoutComponent,
     AdminFooterComponent,
-    AdminHeaderComponent
+    AdminHeaderComponent,
   ],
   imports: [
     BrowserModule,

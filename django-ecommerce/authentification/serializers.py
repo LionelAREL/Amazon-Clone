@@ -5,12 +5,12 @@ class UserDetailSerializer(serializers.ModelSerializer):
     allow_null = True
     class Meta:
         model = get_user_model()
-        fields = ['id','username', 'first_name', 'last_name','last_login']
+        fields = ['id','email', 'first_name', 'last_name','last_login']
 
 class UserCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = ['id','username','password', 'first_name', 'last_name']
+        fields = ['id','email','password', 'first_name', 'last_name']
         
     def create(self, validated_data):
         password = validated_data.pop('password')
@@ -23,9 +23,9 @@ class UserPublicSerializer(serializers.ModelSerializer):
     allow_null = True
     class Meta:
         model = get_user_model()
-        fields = ['username', 'first_name', 'last_name','last_login']
+        fields = ['email', 'first_name', 'last_name','last_login']
 
 class UserPublicEditSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = ['username', 'first_name', 'last_name']
+        fields = ['email', 'first_name', 'last_name']
