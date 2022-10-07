@@ -6,13 +6,14 @@ import { EventService } from 'src/app/core/service/event.service';
 @Component({
   selector: 'app-public-header',
   templateUrl: './public-header.component.html',
-  styleUrls: ['./public-header.component.sass']
+  styleUrls: ['./public-header.component.scss']
 })
 export class PublicHeaderComponent implements OnInit {
 
   logoutMessage:string = ""; 
   cartNumber:Number = 0;
   address:string = "";
+  name:string ="";
   constructor(private authService:AuthService, private router: Router,private eventService:EventService) { }
 
   ngOnInit(): void {
@@ -26,8 +27,10 @@ export class PublicHeaderComponent implements OnInit {
   getSession(){
     this.authService.session().subscribe({
       next:(session) => {
+        console.log(session)
         this.cartNumber = session.cartNumber;
         this.address = session.address?.city
+        this.name = session?.user.name;
       },
       error:(error) => {},
     });

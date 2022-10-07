@@ -2,10 +2,12 @@
 
 
 .container{
+    width: 1000px;
+    margin: 0 auto;
     .list{
         display: flex;
         flex-direction: row;
-        justify-content: space-around;
+        justify-content: space-between;
         .plus{
             border-style: dashed;
             border-color: #C7C7C7;

@@ -1,40 +1,46 @@
-<nav>
-    <ul>
-        <li>
-            <a routerLink="/home">home</a>
-        </li>
-        <li>
-            <a routerLink="/login">login</a>
-        </li>
-        <li>
-            <a routerLink="/register">register</a>
-        </li>
-        <li>
-            <a routerLink="/product-list">product</a>
-        </li>
-        <li>
-            <a routerLink="/cart">cart</a>
-        </li>
-        <li>
-            <a routerLink="" (click) = "logout()">logout</a>
-        </li>
-        <li>
-            <a routerLink="/account" >account</a>
-        </li>
-        <li>
-            <a routerLink="/payment" >payment</a>
-        </li>
-        <li>
-            <a routerLink="" (click) = "logout()">logout</a>
-        </li>
-        <div *ngIf = "logoutMessage">
-            {{logoutMessage}}
+<div class="container1">
+    <div class="navLeft">
+        <img class="logo" src="./../../assets/amazon-white-logo.png" alt="">
+        <div class="delivery">
+            <div class="column">
+                <span class="top">Deliver to {{name}}</span>
+                <span class="bot">{{address=="" || address==null?"no adresse" : address}}</span>
+            </div>
         </div>
-    </ul>
-    <form>
-        <input #input type="text">
-        <button (click) = "submit($event,input)">chercher</button>
-    </form>
-    <div> cart : {{cartNumber}}</div>
-    <div *ngIf="address">address : {{address}}</div>
-</nav>
+    </div>
+    <div class="searchBar">
+        <input type="text">
+    </div>
+    <div class="navRight">
+        <img class="flag" src="./../../assets/france.png" alt="">
+        <div class="column">
+            <span class="top">Hello, {{name}}</span>
+            <span class="bot">Account & Lists</span>
+        </div>
+        <div class="column">
+            <span class="top">Returns &</span>
+            <span class="bot">Orders</span>
+        </div>
+        
+        <a routerLink='/cart' class="cart">
+            <div class="number">{{cartNumber}}</div>
+        </a>
+    </div>
+</div>
+<div class="container2">
+    <nav>
+        <ul>
+            <li class="ligne"> <span class="burger"></span> <a href="">All</a></li>
+            <li><a routerLink="/home">Home</a></li>
+            <li><a routerLink='/login'>Login</a></li>
+            <li><a routerLink='/register'>Register</a></li>
+            <li><a routerLink='/product-list'>Product list</a></li>
+            <li><a routerLink='/account'>Account</a></li>
+            <li><a routerLink='/payment'>Payment</a></li>
+            <li><a routerLink="" (click) = "logout()">Logout</a></li>
+        </ul>
+    </nav>
+</div>
+<div *ngIf = "logoutMessage">
+    {{logoutMessage}}
+</div>
