@@ -9,7 +9,7 @@ type Step = 'emailInfo' | 'passwordInfo';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.sass']
+  styleUrls: ['./login.component.scss']
 })
 
 export class LoginComponent implements OnInit {
@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
 
   onSubmit():void{
     this.resetMessage = true;
-    console.log(this.loginForm.value.email,this.loginForm.value.password);
     let email = this.loginForm.value.email;
     let password = this.loginForm.value.password;
     if(this.loginForm.valid){

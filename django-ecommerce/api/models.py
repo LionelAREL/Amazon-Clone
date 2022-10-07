@@ -14,6 +14,7 @@ class Address(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     address_line_1 = models.CharField(max_length=150)
     address_line_2 = models.CharField(max_length=150)
+    country = models.CharField(max_length=150,default="")
     city = models.CharField(max_length=100)
     zip_code = models.CharField(max_length=20)
     default = models.BooleanField(default=False)

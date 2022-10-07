@@ -1,7 +1,32 @@
-<div>Votre Compte</div>
-<div class="container-addresses">
-    <app-add-address></app-add-address>
-    <div *ngFor="let address of addresses">
-        <app-address [address] = "address"></app-address>
+<div class="container">
+    <h1>Votre Compte</h1>
+    <div class="list">
+        <a [routerLink]="['/account/orders']">
+            <div class="card">
+                <img class="logo" src="./../../assets/order-logo.png" alt="">
+                <div class="column">
+                    <h2>Your orders</h2>
+                    <span>follow, return or buy again   </span>
+                </div>
+            </div>
+        </a>
+        <a [routerLink]="['/account/connexion-security']">
+            <div class="card">
+                <img class="logo" src="./../../assets/security-logo.png" alt="">
+                <div class="column">
+                    <h2>Login and Security</h2>
+                    <span>Modify adresse mail, name and password</span>
+                </div>
+            </div>
+        </a>
+        <a [routerLink]="['/account/adresses']">
+            <div class="card">
+                <img class="logo" src="./../../assets/adresses-logo.png" alt="">
+                <div class="column">
+                    <h2>Your adresses</h2>
+                    <span>Modify your adresses and livraison order and gifts</span>
+                </div>
+            </div>
+        </a>
     </div>
 </div>

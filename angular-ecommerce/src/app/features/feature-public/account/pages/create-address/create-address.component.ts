@@ -6,7 +6,7 @@ import { FetchDataService } from 'src/app/core/service/fetch-data.service';
 @Component({
   selector: 'app-create-address',
   templateUrl: './create-address.component.html',
-  styleUrls: ['./create-address.component.sass']
+  styleUrls: ['./create-address.component.scss']
 })
 export class CreateAddressComponent implements OnInit {
 

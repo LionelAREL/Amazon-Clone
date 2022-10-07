@@ -1,25 +1,30 @@
-<form [formGroup]="addressForm" (ngSubmit)="submit()">
-    <h2>Address</h2>
-  
-    <label for="address_line_1">Address_line_1: </label>
-    <input id="address_line_1" type="text" formControlName="address_line_1">
-  
-    <label for="address_line_2">Address_line_2: </label>
-    <input id="address_line_2" type="text" formControlName="address_line_2">
+<div class="container">
+    <form [formGroup]="addressForm" (ngSubmit)="submit()">
+        <h2>Add a new address</h2>
+      
+        <label for="address_line_1">Address </label>
+        <input id="address_line_1" type="text" formControlName="address_line_1">
+        <input id="address_line_2" type="text" formControlName="address_line_2">
+    
+        <label for="city">City </label>
+        <input id="city" type="text" formControlName="city">
+    
+        <label for="zip_code">Zip code</label>
+        <input id="zip_code" type="text" formControlName="zip_code">
 
-    <label for="city">city: </label>
-    <input id="city" type="text" formControlName="city">
-
-    <label for="zip_code">zip_code: </label>
-    <input id="zip_code" type="text" formControlName="zip_code">
-
-    <label for="default">default: </label>
-    <input id="default" type="checkbox" formControlName="default">
-
-    <button type="submit" [disabled]="!addressForm.valid">Submit</button>
-  
-</form>
-
-<div *ngIf="message">
-    {{message}}
+        <label for="country">Country </label>
+        <input id="country" type="text" formControlName="country">
+    
+        <div class="default">
+            <label for="default">default: </label>
+            <input id="default" type="checkbox" formControlName="default">
+        </div>
+    
+        <button class="button" type="submit" [disabled]="!addressForm.valid">Add an adresse</button>
+      
+    </form>
+    
+    <div *ngIf="message">
+        {{message}}
+    </div>
 </div>

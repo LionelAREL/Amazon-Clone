@@ -1,26 +1,43 @@
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <label for='username'>
-        username :
-    </label>
-    <input id='username' type="text" formControlName = 'username'>
-    <br>
-    <label for='firstName'>
-        firstName :
-    </label>
-    <input id='firstName' type="text" formControlName = 'firstName'>
-    <br>
-    <label for='lastName'>
-        lastName :
-    </label>
-    <input id='lastName' type="text" formControlName = 'lastName'>
-    <br>
-    <label for='password'>
-        password :
-    </label>
-    <input id='password' type="password" formControlName = 'password'>
-    <br>
-    <div *ngIf = "message">
-        {{message}}
-    </div>
-    <button type="submit">Submit</button>
-</form>
+<div class="container">
+    <form class="card" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <h1>
+            Create account 
+        </h1>
+        <label for='name'>
+            Your name
+        </label>
+        <input id='name' type="text" formControlName = 'name'>
+        <div *ngIf="this.registerForm.controls.name.errors?.['required'] && setError">
+            name is required.
+          </div>
+        <label for='email'>
+            Email
+        </label>
+        <input id='email' type="text" formControlName = 'email'>
+        <div *ngIf="this.registerForm.controls.email.errors?.['required'] && setError">
+            email is required.
+          </div>
+        <label for='password'>
+            Password 
+        </label>
+        <input id='password'type="text" formControlName = 'password'>
+        <div *ngIf="this.registerForm.controls.password?.errors?.['required'] && setError">
+            passwordd required
+        </div>
+        <label for='rePassword'>
+            Re-enter password
+        </label>
+        <input id='rePassword' type="rePassword" formControlName = 'rePassword'>
+        <div *ngIf="this.registerForm?.errors?.['mismatch'] && setError">
+            password must match
+        </div>
+        <div *ngIf = "message">
+            {{message}}
+        </div>
+        <button class = "button" type="submit">Create an account</button>
+        <div class="infoEmail">By continuing, you agree to Amazon's  <a href="">Conditions of Use</a> and <a href="">Privacy Notice</a>.</div>
+        <div class="background">
+        </div>
+        <div class="info">Already have an account? <a href="">Sign in</a> <br/>Buying for work? <a href="">Create a free business account</a>  </div>
+    </form>
+</div>

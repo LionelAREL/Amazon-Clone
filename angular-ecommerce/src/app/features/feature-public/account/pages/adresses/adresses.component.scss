@@ -1,0 +1,44 @@
+@import "./../../../../../../variables";
+
+
+.container{
+    .list{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        .plus{
+            border-style: dashed;
+            border-color: #C7C7C7;
+            width: 320px;
+            height: 266px;
+            border-width: 2px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            color: $fontColorRegister;
+        }
+        .adresse{
+            width: 320px;
+            height: 266;
+            border: #C7C7C7 1px solid;
+            border-radius: 8px;
+            .default{
+                border-bottom: solid #C7C7C7 1px;
+                padding: 10px 10px;
+                img{
+                    width: 40px;
+                }
+            }
+            ul{
+                padding: 0;
+                padding-left: 20px;
+                li{
+                    list-style: none;
+                }
+            }
+        }
+    }
+}

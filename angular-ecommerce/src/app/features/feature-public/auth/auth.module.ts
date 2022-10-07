@@ -6,6 +6,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputCardComponent } from './components/input-card/input-card.component';
+import { CoreModule } from 'src/app/core/core.module';
 
 
 @NgModule({
@@ -15,9 +16,10 @@ import { InputCardComponent } from './components/input-card/input-card.component
     InputCardComponent
   ],
   imports: [
-    CommonModule,
+    CommonModule, 
     AuthRoutingModule,
     ReactiveFormsModule,
+    CoreModule,
   ]
 })
 export class AuthModule { }

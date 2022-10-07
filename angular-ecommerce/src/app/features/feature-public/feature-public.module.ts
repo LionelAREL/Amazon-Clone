@@ -9,6 +9,7 @@ import { CartModule } from './cart/cart.module';
 import { PaymentModule } from './payment/payment.module';
 import { ErrorModule } from './error/error.module';
 import { AccountModule } from './account/account.module';
+import { CoreModule } from 'src/app/core/core.module';
 
 
 @NgModule({

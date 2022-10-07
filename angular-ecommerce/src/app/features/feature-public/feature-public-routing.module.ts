@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/core/auth/auth.guard';
 import { NoAuthGuard } from 'src/app/core/auth/no-auth.guard';
-import { PublicLayoutComponent } from 'src/app/layout/public-layout/public-layout.component';
+import { PublicLayoutComponentAuth } from 'src/app/layout/public-layout/public-layout-auth/public-layout.component';
+import { PublicLayoutComponent } from 'src/app/layout/public-layout/public-layout-main/public-layout.component';
 import { NotFoundComponent } from './error/pages/not-found/not-found.component';
 
 const routes: Routes = [
@@ -17,11 +18,6 @@ const routes: Routes = [
       {
         path:'',
         loadChildren: () => import('./home/home-routing.module').then(mod => mod.HomeRoutingModule),
-      },
-      {
-        canActivate:[NoAuthGuard],
-        path:'',
-        loadChildren: () => import('./auth/auth-routing.module').then(mod => mod.AuthRoutingModule),
       },
       {
         path:'',
@@ -43,6 +39,16 @@ const routes: Routes = [
       {
         path:'',
         loadChildren: () => import('./payment/payment-routing.module').then(mod => mod.PaymentRoutingModule),
+      }
+    ]},
+  {
+    path:'',
+    component:PublicLayoutComponentAuth,
+    children:[
+      {
+        canActivate:[NoAuthGuard],
+        path:'',
+        loadChildren: () => import('./auth/auth-routing.module').then(mod => mod.AuthRoutingModule),
       },
       {
         path: '**', 
