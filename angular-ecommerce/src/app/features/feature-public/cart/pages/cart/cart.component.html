@@ -1,6 +1,35 @@
-<div>cart</div>
-<div *ngFor="let item of cart">
-    name : {{item.product.name}}
-    <br>
-    quantity : {{item.quantity}}
+<div class="container">
+    <div class="leftSide block">
+        <h1>Your cart</h1>
+        <div class="transi"></div>
+        <div class="product" *ngFor="let item of cart">
+            <div class="first">
+                <img src="{{item.product.image}}" alt="">
+            </div>
+            <div class="second">
+                <h2>{{item.product.name}}</h2>
+                <div class="description">
+                    {{item.product.description}}
+                </div>
+            </div>
+            <div class="third">
+                <h2>
+                    {{item.product.price/100}}€
+                </h2>
+                <div>
+                    quantity : 
+                    <select *ngIf="item" #selectQuantity (change)="addToCart(item.product.id,selectQuantity.value)">
+                        <option name="chooseQuantity" value="0" [attr.selected]="item.quantity == 0 ? true : null">0 (delete)</option>
+                        <option name="chooseQuantity" value="1" [attr.selected]="item.quantity == 1 ? true : null">1</option>
+                        <option *ngFor="let number of numberChoice" name="chooseQuantity" value={{number}} [attr.selected]='number == item.quantity ? true : null'>{{number}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="rightSide block">
+        <h2>Total articles : {{total}}€</h2>
+        <button routerLink="/payment/" class="button">checkout</button>
+    </div>
+
 </div>

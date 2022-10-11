@@ -2,12 +2,22 @@
 
 
 .container{
-    width: 1000px;
+    width: 1500px;
     margin: 0 auto;
+    margin-bottom: 50px;
+
+    .blocks{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+
+    }
     .list{
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        margin: 20px 30px;
         .plus{
             border-style: dashed;
             border-color: #C7C7C7;

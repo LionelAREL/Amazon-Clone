@@ -6,7 +6,7 @@ import { FetchDataService } from 'src/app/core/service/fetch-data.service';
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.sass']
+  styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit {
 
@@ -40,8 +40,7 @@ export class ProductDetailComponent implements OnInit {
 
   addToCart(quantity:any){
     if(this.productId != null){
-      console.log(quantity)
-      this.fetchData.addToCart(this.productId,quantity).subscribe({
+      this.fetchData.addToCart(this.productId,quantity,true).subscribe({
         next:(detail) => {console.log(detail);this.eventService.emmitEvent({name:"addToCart"})},
         error:(error) => this.messageError = error,
       })

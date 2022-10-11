@@ -28,7 +28,7 @@ class Address(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=150)
-    # image = models.ImageField(upload_to='product_images')
+    image = models.ImageField(null=True)
     description = models.TextField()
     price = models.PositiveIntegerField(default=1)
     created = models.DateTimeField(auto_now_add=True)
@@ -46,7 +46,7 @@ class Order(models.Model):
     start_date = models.DateTimeField(auto_now_add=True)
     ordered_date = models.DateTimeField(blank=True, null=True)
     ordered = models.BooleanField(default=False)
-    receveid = models.BooleanField(default=False)
+    received = models.BooleanField(default=False)
     address = models.ForeignKey(Address, on_delete=models.PROTECT,null=True,blank=True)
 
     def __str__(self):

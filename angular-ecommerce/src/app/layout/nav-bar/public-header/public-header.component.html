@@ -9,18 +9,25 @@
         </div>
     </div>
     <div class="searchBar">
-        <input type="text">
+        <div>
+            <input #input type="text">
+            <button (click) = "submit($event,input)"><img src="./../../assets/search.svg" alt=""></button>
+        </div>
+            <select class="selectButton" (change)="changeCategory($event)">
+                <option value="">All</option>
+                <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+            </select>
     </div>
     <div class="navRight">
         <img class="flag" src="./../../assets/france.png" alt="">
-        <div class="column">
+        <a routerLink="/account/" class="column">
             <span class="top">Hello, {{name}}</span>
             <span class="bot">Account & Lists</span>
-        </div>
-        <div class="column">
+        </a>
+        <a routerLink="/account/orders/" class="column">
             <span class="top">Returns &</span>
             <span class="bot">Orders</span>
-        </div>
+        </a>
         
         <a routerLink='/cart' class="cart">
             <div class="number">{{cartNumber}}</div>

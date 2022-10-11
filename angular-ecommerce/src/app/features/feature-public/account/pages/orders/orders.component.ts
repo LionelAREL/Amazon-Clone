@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FetchDataService } from 'src/app/core/service/fetch-data.service';
 
 @Component({
   selector: 'app-orders',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrdersComponent implements OnInit {
 
-  constructor() { }
+  ordered:any;
+
+  constructor(private fetchData:FetchDataService) { }
 
   ngOnInit(): void {
+    this.getOrder()
+  }
+
+  getOrder(){
+    this.fetchData.ordered().subscribe((order:any) => {
+      this.ordered = order;
+      console.log(order)
+    });
   }
 
 }

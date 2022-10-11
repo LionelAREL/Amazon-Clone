@@ -48,9 +48,26 @@ export class FetchDataService {
       catchError(handleErrorMessage<any>('address')),
       );
   }
+  categories(){
+    return this.http.get(this.BASE_URL + "category/",this.httpOptions).pipe(
+      catchError(handleErrorMessage<any>('category')),
+      );
+  }
+  ordered(){
+    return this.http.get(this.BASE_URL + "order/",this.httpOptions).pipe(
+      catchError(handleErrorMessage<any>('order')),
+      );
+  }
 
   postAddress(address:any){
     return this.http.post(this.BASE_URL + "address/",address,this.httpOptions).pipe(
+      tap((data) => log(data)),
+      map((data:any) => data.detail),
+      catchError(handleErrorMessage<any>('address')),
+      );
+  }
+  postSelectedAddress(address:any){
+    return this.http.post(this.BASE_URL + "selected-address/",{"id":address.id.toString()},this.httpOptions).pipe(
       tap((data) => log(data)),
       map((data:any) => data.detail),
       catchError(handleErrorMessage<any>('address')),
@@ -77,8 +94,8 @@ export class FetchDataService {
     );
   }
 
-  addToCart(productId:string,quantity:number){
-    return this.http.post(this.BASE_URL + `cart/`,{product:productId,quantity:quantity},this.httpOptions).pipe(
+  addToCart(productId:string,quantity:number,add:boolean){
+    return this.http.post(this.BASE_URL + "cart/?add=" + (add ? "true" : "false"),{product:productId,quantity:quantity},this.httpOptions).pipe(
       tap((data) => log(data)),
       map((data:any) => data.detail),
       catchError(handleErrorMessage<any>('cart')),

@@ -1,28 +1,32 @@
 <div class="container">
     <h1>Your adresses</h1>
-    <div class="list">
-        <a [routerLink] = "['/account/adresses/create']" class="plus">
-            <img src="./../../assets/+.png" alt="">
-            <h2>Add an adresse</h2>
-        </a>
-        <div class="adresse">
-            <div class="default">
-                default : 
-                <img src="./../../assets/amazon-logo-entire.png" alt="">
-            </div>
-            <ul>
-                <li>adress line 1</li>
-            </ul>
-            <ul>
-                <li>adress line 2</li>
-            </ul>
-            <ul>
-                <li>city zipcode</li>
-            </ul>
-            <ul>
-                <li>country</li>
-            </ul>
+    <div class = "blocks">
+        <div class="list">
+            <a [routerLink] = "['/account/adresses/create']" class="plus">
+                <img src="./../../assets/+.png" alt="">
+                <h2>Add an adresse</h2>
+            </a>
         </div>
-
+        <div *ngFor="let adresse of adresses" class="list">
+            <div class="adresse">
+                <div *ngIf="adresse.default" class="default">
+                    default : 
+                    <img src="./../../assets/amazon-logo-entire.png" alt="">
+                </div>
+                <ul>
+                    <li>{{adresse.address_line_1}}</li>
+                </ul>
+                <ul>
+                    <li>{{adresse.address_line_1}}</li>
+                </ul>
+                <ul>
+                    <li>{{adresse.city}}, {{adresse.zip_code}}</li>
+                </ul>
+                <ul>
+                    <li>{{adresse.country}}</li>
+                </ul>
+            </div>
+    
+        </div>
     </div>
 </div>

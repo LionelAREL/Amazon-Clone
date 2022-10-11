@@ -41,6 +41,11 @@ class ProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = '__all__'
 
+class ProductSimpleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = ['id','name','description','price']
+
 class OrderItemValidation:
     def validate(self, data):
         order= get_order(self.context['request'])
@@ -49,6 +54,12 @@ class OrderItemValidation:
 
 class OrderItemDetailSerializer(OrderItemValidation, serializers.ModelSerializer):
     product = ProductSerializer()
+    class Meta:
+        model = OrderItem
+        fields = ['quantity', 'product']
+
+class OrderItemSimpleSerializer(serializers.ModelSerializer):
+    product = ProductSimpleSerializer()
     class Meta:
         model = OrderItem
         fields = ['quantity', 'product']
@@ -68,7 +79,11 @@ class OrderItemCreateSerializer(OrderItemValidation, serializers.ModelSerializer
         order= get_or_set_order(self.context['request'])
         if order.orderItems.filter(product__id = validated_data['product'].id).exists():
             tempOrderItem = order.orderItems.get(product=validated_data['product'])
-            tempOrderItem.quantity = validated_data['quantity'] + order.orderItems.filter(product__id = validated_data['product'].id).first().quantity
+            print(self.context['request'].GET)
+            if(self.context['request'].GET.get('add') == 'true'):
+                tempOrderItem.quantity = validated_data['quantity'] + order.orderItems.filter(product__id = validated_data['product'].id).first().quantity
+            else:
+                tempOrderItem.quantity = validated_data['quantity'] 
             if tempOrderItem.quantity > 25 :
                 tempOrderItem.quantity= 25
             tempOrderItem.save()
@@ -85,4 +100,11 @@ class OrderSerializer(serializers.ModelSerializer):
         model = Order
         fields = '__all__'
 
-
+class OrderDetailSerializer(serializers.ModelSerializer):
+    orderItem = serializers.SerializerMethodField()
+    address = AddressSerializer()
+    class Meta:
+        model = Order
+        fields = ['id','orderItem','ordered_date','received','address']
+    def get_orderItem(self,instance):
+        return OrderItemSimpleSerializer(instance.orderItems,many=True).data

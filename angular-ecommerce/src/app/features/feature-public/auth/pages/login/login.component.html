@@ -31,5 +31,5 @@
     </form>
     
     <div class="new" *ngIf="this.currentStep === 'emailInfo'" href="">  <h5>New to Amazon?</h5> </div>
-    <button class="newAccount" *ngIf="this.currentStep === 'emailInfo'" href="">Create your amazon account</button>
+    <button routerLink="/register" class="newAccount" *ngIf="this.currentStep === 'emailInfo'" href="">Create your amazon account</button>
 </div>
