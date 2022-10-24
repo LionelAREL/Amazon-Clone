@@ -1,4 +1,19 @@
-<button (click)="expand()">expand</button>
-<mat-expansion-panel [expanded]="expanded">
-    
-</mat-expansion-panel>
+<div class="container">
+    <h1>Your adresses</h1>
+    <div class="line"></div>
+    <form *ngIf="adresses" [formGroup]="formAdresses"  (submit)="submitAdresse()">
+        <div *ngFor="let adresse of adresses" class="list">
+            <label for="{{adresse.zip_code}}">
+                <div class="adresse" *ngIf="adresse.default">
+                    <input id="{{adresse.zip_code}}" type="radio" value="{{adresse.zip_code}}" name="adresses" (change)="onRadioChange(adresse)" checked>
+                    {{adresse.address_line_1}}&nbsp;{{adresse.address_line_2}},&nbsp;{{adresse.country}},&nbsp;{{adresse.city}}&nbsp;{{adresse.zip_code}}
+                </div>
+                <div class="adresse" *ngIf="!adresse.default">
+                    <input id="{{adresse.zip_code}}" type="radio" value="{{adresse.zip_code}}" name="adresses" (change)="onRadioChange(adresse)" >
+                    {{adresse.address_line_1}}&nbsp;{{adresse.address_line_2}},&nbsp;{{adresse.country}},&nbsp;{{adresse.city}}&nbsp;{{adresse.zip_code}}
+                </div>
+            </label>
+        </div>
+        <button class="button" type="submit">Send this adresse</button>
+    </form>
+</div>

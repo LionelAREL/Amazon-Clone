@@ -1,20 +1,49 @@
-<form [formGroup]="userForm" (ngSubmit)="submit()">
-    <h2>Address</h2>
-  
-    <label for="username">username: </label>
-    <input id="username" type="text" formControlName="username">
-  
-    <label for="first_name">first name: </label>
-    <input id="first_name" type="text" formControlName="first_name">
-
-    <label for="last_name">last name: </label>
-    <input id="last_name" type="text" formControlName="last_name">
-
-
-    <button type="submit" [disabled]="!userForm.valid">Submit</button>
-  
-</form>
-
-<div *ngIf="message">
-    {{message}}
+<div class="container">
+    <form class="main" [formGroup]="userForm" (ngSubmit)="submit()">
+        <h1>Connexion and security</h1>
+        <div class="card">
+            <div class="left">
+                <label for="username">Name </label>
+                <br/>
+                <span>{{name}}</span>
+            </div>
+            <div class="right">
+                <input *ngIf="showName" id="name" type="text" formControlName="name">
+                <button class="modify" *ngIf="!showName" (click)="setShowName()">Edit</button>
+            </div>
+        </div>
+        <div class="card">
+            <div class="left">
+                <label for="email">Email </label>
+                <br/>
+                <span>{{email}}</span>
+            </div>
+            <div class="right">
+                <input *ngIf="showEmail" id="email" type="email" formControlName="email">
+                <button class="modify" *ngIf="!showEmail" (click)="setShowEmail()">Edit</button>
+            </div>
+        </div>
+        <div class="card">
+            <div class="left">
+                <label for="password">Password </label>
+                <br/>
+                <span>******</span>
+            </div>
+            <div class="right">
+                <span *ngIf="showPassword">New password</span>
+                <input *ngIf="showPassword" id="password" type="text" formControlName="password">
+                <span *ngIf="showPassword">Enter your new password again</span>
+                <input *ngIf="showPassword" id="checkPassword" type="text" formControlName="checkPassword">
+                <button class="modify" *ngIf="!showPassword" (click)="setShowPassword()">Edit</button>
+            </div>
+        </div>
+    
+    
+        <button class="button" type="submit" [disabled]="!userForm.valid">save</button>
+      
+    </form>
+    
+    <div *ngIf="message">
+        {{message}}
+    </div>
 </div>

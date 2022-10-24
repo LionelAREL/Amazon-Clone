@@ -1,0 +1,24 @@
+<div class="container">
+    <h1>Your Orders</h1>
+    <div *ngIf="ordered" class="list">
+        <div *ngFor="let order of ordered" class="card">
+            <div class="orderItem">
+                <div class="cardHeader">
+                    <div class="headerLeft">
+                        <div>Ordered the <br/> {{order.ordered_date}}</div>
+                    </div>
+                    <div class="headerRight">
+                        <span>commandId : {{order.id}}</span>
+                    </div>
+                </div>
+                <div *ngFor="let orderItem of order.orderItem" class="main">
+                    <div class="left">
+                        <img src="{{orderItem.product.image}}" alt="">
+                        <a routerLink="/product/{{orderItem.product.id}}">{{orderItem.product.name}}</a>
+                    </div>
+                    <button class="button">Open</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

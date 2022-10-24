@@ -6,7 +6,7 @@ import { cartQuantity } from 'src/app/core/utils/fetch.utils';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.sass']
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
 

@@ -53,7 +53,7 @@ class MultipleSerializerMixin:
                 return super().get_serializer_class()
 
 class StandardResultsSetPagination(PageNumberPagination):
-    page_size = 1
+    page_size = 10
     page_size_query_param = 'page_size'
     max_page_size = 1000
                 
@@ -66,6 +66,14 @@ class UserPublicView(MultipleSerializerMixin, RetrieveUpdateAPIView):
     serializer_class = UserPublicEditSerializer
     def get_object(self):
         return self.request.user
+
+class OrderPublicView(MultipleSerializerMixin, ReadOnlyModelViewSet):
+    permission_classes = [IsAuthenticated]
+    serializer_class = OrderDetailSerializer
+    def get_queryset(self):
+        return Order.objects.filter(user=self.request.user,ordered=True)
+    def get_object(self):
+        return Order.objects.filter(user=self.request.user,ordered=False).first()
 
 class CartView(MultipleSerializerMixin, ListCreateAPIView):
     update_serializer_class = OrderItemCreateSerializer
@@ -106,6 +114,9 @@ class AddressSelectedView(MultipleSerializerMixin,APIView):
     def post(self, request, *args, **kwargs):
         address_id_selected = request.data['id']
         address_selected = get_object_or_404(Address,id=address_id_selected,user=request.user)
+        Address.objects.filter(user=request.user).update(default=False)
+        address_selected.default = True
+        address_selected.save()
         order = get_order(request)
         order.address = address_selected
         order.save()
@@ -123,7 +134,7 @@ class AddressViewset(MultipleSerializerMixin,ModelViewSet):
     Admin viewset
 """
 
-class CategoryAdminViewset(ModelViewSet):
+class CategoryViewset(ModelViewSet):
     permission_classes = [IsAdminOrReadOnly]
     serializer_class = CategorySerializer
     queryset = Category.objects.all()

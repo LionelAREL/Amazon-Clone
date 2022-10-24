@@ -7,6 +7,7 @@ import { CartListComponent } from './components/cart-list/cart-list.component';
 import { EditAddressComponent } from './components/edit-address/edit-address.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PaymentRoutingModule,
     MatExpansionModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class PaymentModule { }

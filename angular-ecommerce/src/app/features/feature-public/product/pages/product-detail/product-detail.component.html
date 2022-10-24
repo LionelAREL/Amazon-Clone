@@ -1,11 +1,33 @@
-<div *ngIf="product">
-    {{product.name}}
-    <select #selectQuantity>
-        <option name="product.id" value="0">0</option>
-        <option name="product.id" value="1" selected>1</option>
-        <option *ngFor="let number of numberChoice" name="product.id" value="{{number}}">{{number}}</option>
-    </select>
-    <button (click)="addToCart(selectQuantity.value)">ajouter au panier</button>
+<div class="product" *ngIf="product">
+    <div class="container row">
+        <div>
+            <img class="image" src="{{product.image}}" alt="">
+        </div>
+        <div class="first">
+            <h1>
+                {{product.name}}
+            </h1>
+            <div class="transi"></div>
+            <div class="description">{{product.description}}</div>
+        </div>
+        <div class="second">
+            <h1>
+                {{product.price/100}}€
+            </h1>
+            <div class="column">
+                <div class="row margin"><img class="prime" src="./../../assets/prime.png" alt="">&nbsp;Livraison Gratuite</div>
+                <div>
+                    quantity : 
+                    <select #selectQuantity>
+                        <option name="product.id" value="0">0</option>
+                        <option name="product.id" value="1" selected>1</option>
+                        <option *ngFor="let number of numberChoice" name="product.id" value="{{number}}">{{number}}</option>
+                    </select>
+                </div>
+                <button class="button" (click)="addToCart(selectQuantity.value)">add to cart</button>
+            </div>
+            </div>
+    </div>
 </div>
 
 <div *ngIf="messageError">

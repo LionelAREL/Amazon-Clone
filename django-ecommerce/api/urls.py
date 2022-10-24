@@ -7,15 +7,17 @@ from session.views import SessionAdminViewset
 router_admin = routers.SimpleRouter()
 router = routers.SimpleRouter()
 
-router_admin.register('category', CategoryAdminViewset,basename="category")
+router_admin.register('category', CategoryViewset,basename="category")
 router_admin.register('address', AddressAdminViewset,basename="address")
 router_admin.register('session', SessionAdminViewset,basename="session")
 router_admin.register('product', ProductAdminViewset,basename="product")
 router_admin.register('order', OrderAdminViewset,basename="order")
 router_admin.register('order_item', OrderItemAdminViewset,basename="order_item")
 
+router.register('category', CategoryViewset,basename="category")
 router.register('address', AddressViewset,basename="address")
 router.register('product', ProductAdminViewset,basename="product")
+router.register('order', OrderPublicView,basename="order")
 
 urlpatterns = [
     path('admin/', include(router_admin.urls)),

@@ -5,16 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app/app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { StoreModule } from '@ngrx/store';
 import { FeatureAdminModule } from './features/feature-admin/feature-admin.module';
 import { FeaturePublicModule } from './features/feature-public/feature-public.module';
 import { PublicHeaderComponent } from './layout/nav-bar/public-header/public-header.component';
 import { PublicFooterComponent } from './layout/nav-bar/public-footer/public-footer.component';
-import { PublicLayoutComponent } from './layout/public-layout/public-layout.component';
+import { PublicLayoutComponent } from './layout/public-layout/public-layout-main/public-layout.component';
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
 import { AdminFooterComponent } from './layout/nav-bar/admin-footer/admin-footer.component';
 import { AdminHeaderComponent } from './layout/nav-bar/admin-header/admin-header.component';
-import { environment } from '../environments/environment'; // Angular CLI environment
+import { environment } from '../environments/environment';
+import { PublicLayoutComponentAuth } from './layout/public-layout/public-layout-auth/public-layout.component';
+import { PublicHeaderAuthComponent } from './layout/nav-bar/public-header-auth/public-header.component';
+import { PublicFooterAuthComponent } from './layout/nav-bar/public-footer-auth/public-footer.component';
 
 @NgModule({
   declarations: [
@@ -22,9 +24,12 @@ import { environment } from '../environments/environment'; // Angular CLI enviro
     PublicHeaderComponent,
     PublicFooterComponent,
     PublicLayoutComponent,
+    PublicLayoutComponentAuth,
     AdminLayoutComponent,
     AdminFooterComponent,
-    AdminHeaderComponent
+    AdminHeaderComponent,
+    PublicHeaderAuthComponent,
+    PublicFooterAuthComponent,
   ],
   imports: [
     BrowserModule,

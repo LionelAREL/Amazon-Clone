@@ -25,8 +25,8 @@ export class AuthService {
     this.refreshSession();
   }
 
-  login(username:any,password:any):Observable<any>{
-    return this.http.post(this.BASE_URL + "login/",{'username':username,'password':password},this.httpOptions).pipe(
+  login(email:any,password:any):Observable<any>{
+    return this.http.post(this.BASE_URL + "login/",{'email':email,'password':password},this.httpOptions).pipe(
       tap((data) => log(data)),
       map((data:any) => data.detail),
       catchError(handleErrorMessage<any>('login')),

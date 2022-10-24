@@ -22,13 +22,13 @@ class GetCSRFToken(APIView):
 class Login(APIView):
     def post(self, request, format=None):
         data = json.loads(request.body)
-        username = data.get('username')
+        email = data.get('email')
         password = data.get('password')
 
-        if username is None or password is None:
-            return JsonResponse({'detail': 'Please provide username and password.'}, status=400)
+        if email is None or password is None:
+            return JsonResponse({'detail': 'Please provide email and password.'}, status=400)
 
-        user = authenticate(username=username, password=password)
+        user = authenticate(email=email, password=password)
 
         if user is None:
             return JsonResponse({'detail': 'Invalid credentials.'}, status=400)

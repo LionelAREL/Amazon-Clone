@@ -7,12 +7,13 @@ import { EventService } from 'src/app/core/service/event.service';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.sass']
+  styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
 
   products:any[] = [];
   messageError:string = "";
+  numberChoice:number[] = []
 
   constructor(private fetchData:FetchDataService,private route: ActivatedRoute, private router: Router,private eventService:EventService) {}
 
@@ -30,6 +31,10 @@ export class ProductListComponent implements OnInit {
           this.getProducts(params);
         }
     });
+
+    for(let i = 2;i<11;i++){
+      this.numberChoice.push(i);
+    }
   }
 
   public filter: string = '';
@@ -39,7 +44,7 @@ export class ProductListComponent implements OnInit {
   public responsive: boolean = true;
   public config: any = {
       id: 'advanced',
-      itemsPerPage: 1,
+      itemsPerPage: 10,
       currentPage: 1,
       totalItems: 0,
   };
@@ -67,12 +72,22 @@ export class ProductListComponent implements OnInit {
         this.products = products.results;
         this.config.totalItems = products.count;
         this.config.currentPage = params.page
+        console.log(products)
       },
       error:(error) => {
         console.log(error)
         this.messageError = error;
       }
     });
+  }
+
+  addToCart(productId:any,quantity:any){
+    if(productId != null){
+      this.fetchData.addToCart(productId,quantity,false).subscribe({
+        next:(detail) => {console.log(detail);this.eventService.emmitEvent({name:"addToCart"})},
+        error:(error) => console.log(error),
+      })
+    }
   }
 
 }

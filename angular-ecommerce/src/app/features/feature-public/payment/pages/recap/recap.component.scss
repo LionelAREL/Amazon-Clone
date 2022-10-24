@@ -1,0 +1,126 @@
+@import "./../../../../../../variables";
+
+.container {
+    width: 1150px;
+    margin: 20px auto 80px;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    font-family: $fontFamilyRegister;
+    .expand{
+        position: absolute;
+        top: 0;
+        right: 20px;
+    
+    }
+    .expand:hover ,button:hover{
+        cursor: pointer;
+    }
+    .expanded{
+        margin-left: 20px;
+        margin-top: 5px;
+    }
+    .transi{
+        border-top: 1px solid #e7e7e7;
+        width: 98%;
+        margin: 30px 0;   
+    }
+    .align-center{
+        align-items: center;
+    }
+    .containerLeft{
+        position: relative;
+        width: 860px;
+        margin-top: 40px;
+        .left{
+            margin: 0;
+            font-size: 23px;
+        }
+        .row{
+            display: flex;
+            flex-direction: row;
+        }
+        .first {
+            .adresse{
+                ul{
+                    margin: 0;
+                    li{
+                        list-style: none;
+                        
+                    }
+                }
+            }
+        }
+        .second{
+            .right{
+                display: flex;
+                flex-direction: column;
+                div{
+                    margin-left: 20px;
+                }
+                a{
+                    margin-left: 20px;
+                }
+            }
+            .stripe{
+                width: 60px;
+                // margin-left: 10px;
+            }
+            .billing{
+                margin-left: 20px;
+            }
+            
+        }
+    }
+    .checkout{
+        margin-top: 40px;
+        width: 290px;
+        position:sticky;
+        border-radius: 8px;
+        padding: 14px 18px;
+        border: 1px #D5D9D9 solid;
+        width: 290px;
+        height: 354px;
+        .button{
+            margin-bottom: 25px;
+            width: 100%;
+        }
+        div{
+            font-size: 12px;
+        }
+    }
+
+    .button{
+        margin-right: 20px;
+        background-color: #FFD814;
+        border-color: #FCD200;
+        border-radius: 8px;
+        padding: 3px 10px;
+        font-size: 16px;
+    }
+    .payment{
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        margin-top: 30px;
+        width: 760px;
+        padding: 14px 18px;
+        height: 100px;
+        border-radius: 8px;
+        border: 1px #D5D9D9 solid;
+        .button{
+            width: 100%;
+        }
+        h2{
+            margin: 0;
+            font-size: 26px;
+            color: #B12704;
+        }
+        div{
+            font-size: 12px;
+        }
+        .right{
+
+        }
+    }
+}

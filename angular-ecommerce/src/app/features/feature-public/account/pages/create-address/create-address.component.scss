@@ -1,0 +1,56 @@
+@import "./../../../../../../variables";
+
+
+.container{
+    width: 500px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+
+    h2{
+
+    }
+    label{
+        display: block;
+        margin-bottom: 5px;
+        font-family: $fontFamilyRegister;
+        font-weight: bold;
+    }
+    input{
+        display: block;
+        width: 100%;
+        margin-bottom: 20px;
+        height: 25px;
+        font-weight: 18px;
+    }
+    .default{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        input{
+            padding: 0;
+            margin: 0;
+            margin-bottom: 5px;
+            margin-left: 10px;
+            width: fit-content;
+        }
+        label{
+            width: fit-content;
+            height: fit-content;
+        }
+        
+    }
+
+    .button{
+        background-color: #FFD814;
+        border-radius: 8px;
+        width: 140px;
+        height: 30px;
+        border-color: #FCD200;
+        border-style: none;
+        font-family: $fontFamilyRegister;
+        
+    }
+    .button:hover{
+        cursor: pointer;
+    }
+}
