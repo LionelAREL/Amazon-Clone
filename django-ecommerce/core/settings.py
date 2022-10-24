@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import botocore 
+import botocore.session 
+from aws_secretsmanager_caching import SecretCache, SecretCacheConfig 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -81,13 +84,19 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+client = botocore.session.get_session().create_client('secretsmanager')
+cache_config = SecretCacheConfig()
+cache = SecretCache( config = cache_config, client = client)
+
+secret = cache.get_secret_string('amazon/clone')
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'angular_django_ecommerce',
+        'NAME': 'amazon_clone_db',
         'USER': 'postgres',
-        'PASSWORD': 'VRmIMWs0x18cTied88pa',
-        'HOST': 'angular-django-ecommerce-database.cr8pcsdso6dy.eu-west-3.rds.amazonaws.com',
+        'PASSWORD': secret,
+        'HOST': 'database-amazon-clone.c2rfy170coik.eu-west-3.rds.amazonaws.com',
         'PORT': '5432',
     }
 }
