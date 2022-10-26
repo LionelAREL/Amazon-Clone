@@ -13,7 +13,7 @@ deploy-job:
     - sudo git config --global --add safe.directory /home/ubuntu/angular-django-ecommerce
     - sudo git pull
     - cd /home/ubuntu/"$BUILD_DIR"/"$BACK_DIR"/
-    - source env/bin/activate
+    - sudo source env/bin/activate
     - sudo python3 manage.py makemigrations
     - sudo python3 manage.py migrate
     - sudo python3 manage.py collectstatic --noinput
