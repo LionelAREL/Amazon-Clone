@@ -14,9 +14,9 @@ deploy-job:
     - sudo git pull
     - cd /home/ubuntu/"$BUILD_DIR"/"$BACK_DIR"/
     - source env/bin/activate
-    - sudo python3 manage.py makemigrations
-    - sudo python3 manage.py migrate
-    - sudo python3 manage.py collectstatic --noinput
+    - python3 manage.py makemigrations
+    - python3 manage.py migrate
+    - python3 manage.py collectstatic --noinput
     - cd /home/ubuntu/"$BUILD_DIR"/"$FRONT_DIR"/
     - sudo npm install --legacy-peer-deps
     - sudo npm run build --prod
