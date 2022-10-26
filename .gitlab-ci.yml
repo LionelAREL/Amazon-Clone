@@ -10,16 +10,16 @@ deploy-job:
   environment: production
   script:
     - cd /home/ubuntu/"$BUILD_DIR"/
-    - git config --global --add safe.directory /home/ubuntu/angular-django-ecommerce
-    - git pull
+    - sudo git config --global --add safe.directory /home/ubuntu/angular-django-ecommerce
+    - sudo git pull
     - cd /home/ubuntu/"$BUILD_DIR"/"$BACK_DIR"/
     - source env/bin/activate
-    - python3 manage.py makemigrations
-    - python3 manage.py migrate
-    - python3 manage.py collectstatic --noinput
+    - sudo python3 manage.py makemigrations
+    - sudo python3 manage.py migrate
+    - sudo python3 manage.py collectstatic --noinput
     - cd /home/ubuntu/projects/"$BUILD_DIR"/"$FRONT_DIR"/
-    - npm install --legacy-peer-deps
-    - npm run build --prod
+    - sudo npm install --legacy-peer-deps
+    - sudo npm run build --prod
     - sudo systemctl restart gunicorn
     - sudo systemctl restart nginx
 
