@@ -10,6 +10,7 @@ deploy-job:
   environment: production
   script:
     - cd /home/ubuntu/"$BUILD_DIR"/
+    - git config --global --add safe.directory /home/ubuntu/angular-django-ecommerce
     - git pull
     - cd /home/ubuntu/"$BUILD_DIR"/"$BACK_DIR"/
     - source env/bin/activate
