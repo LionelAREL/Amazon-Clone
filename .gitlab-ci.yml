@@ -1,6 +1,7 @@
 stages:
   - deploy
 variables:
+  GIT_STRATEGY: none
   BUILD_DIR : "angular-django-ecommerce"
   FRONT_DIR : "angular-ecommerce"
   BACK_DIR : "django-ecommerce"
@@ -9,6 +10,7 @@ deploy-job:
   environment: production
   script:
     - cd /home/ubuntu/"$BUILD_DIR"/
+    - git pull
     - cd /home/ubuntu/"$BUILD_DIR"/"$BACK_DIR"/
     - source env/bin/activate
     - python3 manage.py makemigrations
