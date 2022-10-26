@@ -13,11 +13,11 @@ deploy-job:
     - sudo git config --global --add safe.directory /home/ubuntu/angular-django-ecommerce
     - sudo git pull
     - cd /home/ubuntu/"$BUILD_DIR"/"$BACK_DIR"/
-    - sudo source env/bin/activate
+    - source env/bin/activate
     - sudo python3 manage.py makemigrations
     - sudo python3 manage.py migrate
     - sudo python3 manage.py collectstatic --noinput
-    - cd /home/ubuntu/projects/"$BUILD_DIR"/"$FRONT_DIR"/
+    - cd /home/ubuntu/"$BUILD_DIR"/"$FRONT_DIR"/
     - sudo npm install --legacy-peer-deps
     - sudo npm run build --prod
     - sudo systemctl restart gunicorn
