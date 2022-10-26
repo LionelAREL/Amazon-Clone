@@ -1,0 +1,23 @@
+stages:
+  - deploy
+variables:
+  BUILD_DIR : "angular-django-ecommerce"
+  FRONT_DIR : "angular-ecommerce"
+  BACK_DIR : "django-ecommerce"
+deploy-job:
+  stage: deploy  
+  environment: production
+  script:
+    - cd /home/ubuntu/"$BUILD_DIR"/
+    - cd /home/ubuntu/"$BUILD_DIR"/"$BACK_DIR"/
+    - source env/bin/activate
+    - python3 manage.py makemigrations
+    - python3 manage.py migrate
+    - python3 manage.py collectstatic --noinput
+    - cd /home/ubuntu/projects/"$BUILD_DIR"/"$FRONT_DIR"/
+    - npm install --legacy-peer-deps
+    - npm run build --prod
+    - sudo systemctl restart gunicorn
+    - sudo systemctl restart nginx
+
+
