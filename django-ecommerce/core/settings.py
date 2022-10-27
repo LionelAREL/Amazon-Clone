@@ -14,6 +14,7 @@ from pathlib import Path
 import botocore 
 import botocore.session 
 from aws_secretsmanager_caching import SecretCache, SecretCacheConfig 
+import json
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,7 +29,7 @@ SECRET_KEY = 'django-insecure-)$m!g+-^^#%%jd@wjvn!dkm2pt6yzro&bu-92#5j*e^f%u5!=h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost',' 52.47.59.220','www.amazon-lionel-arel.ga','amazon-lionel-arel.ga']
+ALLOWED_HOSTS = ['localhost','13.37.32.70','172.31.33.133']
 
 
 # Application definition
@@ -84,11 +85,13 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-client = botocore.session.get_session().create_client('secretsmanager')
+client = botocore.session.get_session().create_client(service_name='secretsmanager',region_name='eu-west-3')
 cache_config = SecretCacheConfig()
 cache = SecretCache( config = cache_config, client = client)
 
-secret = cache.get_secret_string('amazon/clone')
+secret_name = 'amazon/clone'
+
+secret = json.loads(cache.get_secret_string(secret_name))['password']
 
 DATABASES = {
     'default': {
