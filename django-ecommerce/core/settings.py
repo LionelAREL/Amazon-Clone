@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-)$m!g+-^^#%%jd@wjvn!dkm2pt6yzro&bu-92#5j*e^f%u5!=h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost','13.37.32.70','172.31.33.133']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -158,10 +158,9 @@ REST_FRAMEWORK = {
     ],
 }
 
-CSRF_TRUSTED_ORIGINS = [
+CORS_ORIGIN_WHITELIST = CSRF_TRUSTED_ORIGINS = [
     'http://localhost:4200',
     'http://127.0.0.1:4200',
-    'https://52.47.59.220',
     'https://www.amazon-lionel-arel.ga',
     'https://amazon-lionel-arel.ga'
 ]
@@ -171,7 +170,6 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:4200',
     'http://127.0.0.1:4200',
-    'https://52.47.59.220',
     'https://www.amazon-lionel-arel.ga',
     'https://amazon-lionel-arel.ga'
 ]
@@ -187,10 +185,11 @@ CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-
+CORS_ORIGIN_ALLOW_ALL = True
 SESSION_ENGINE = 'session.backends.db'
-
-
+	
+SESSION_COOKIE_DOMAIN = '.amazon-lionel-arel.ga'
+CSRF_COOKIE_DOMAIN = '.amazon-lionel-arel.ga'
 
 LOGGING = {
     'version': 1,
@@ -223,5 +222,3 @@ LOGGING = {
         },
     }
 }
-
-
