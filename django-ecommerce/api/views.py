@@ -203,7 +203,7 @@ class PaymentView(APIView):
                             'unit_amount': x.product.price,
                             'product_data': {
                                 'name': x.product.name,
-                                'images': [x.product.image],
+                                'images': [x.product.image.url],
                             },
                         },
                         'quantity': x.quantity
