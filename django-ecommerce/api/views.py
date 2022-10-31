@@ -215,8 +215,8 @@ class PaymentView(APIView):
                 payment_intent_data={
                     'capture_method': 'manual',
                 },
-                success_url="http://localhost:4200",
-                cancel_url="http://localhost:4200",
+                success_url="https://www.amazon-lionel-arel.ga/cart",
+                cancel_url="https://www.amazon-lionel-arel.ga/cart",
             )
             order.payment_id = checkout_session.stripe_id
             order.save()
