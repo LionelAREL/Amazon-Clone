@@ -14,7 +14,7 @@ class Address(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     address_line_1 = models.CharField(max_length=150)
     address_line_2 = models.CharField(max_length=150)
-    country = models.CharField(max_length=150,default="")
+    country = models.CharField(max_length=150)
     city = models.CharField(max_length=100)
     zip_code = models.CharField(max_length=20)
     default = models.BooleanField(default=False)
@@ -23,7 +23,7 @@ class Address(models.Model):
         return f"{self.user.username}-{self.address_line_1}({self.default})"
 
     class Meta:
-        verbose_name_plural = 'Addresses'
+        verbose_name_plural = 'Adresses'
 
 
 class Product(models.Model):
@@ -42,7 +42,7 @@ class Product(models.Model):
 
 
 class Order(models.Model):
-    user = models.ForeignKey(get_user_model(), blank=True, null=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(get_user_model(), blank=True, null=True, on_delete=models.DO_NOTHING)
     start_date = models.DateTimeField(auto_now_add=True)
     ordered_date = models.DateTimeField(blank=True, null=True)
     ordered = models.BooleanField(default=False)
@@ -51,7 +51,7 @@ class Order(models.Model):
 
     def __str__(self):
         if self.user:
-            return f"{self.user.username}({self.ordered})"
+            return f"{self.user}({self.ordered})"
         else:
             return f"anonymous_user({self.ordered})"
 

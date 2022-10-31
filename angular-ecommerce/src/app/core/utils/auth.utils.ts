@@ -15,7 +15,7 @@ export function handleErrorMessage<T>(operation = 'operation') {
     return (error: any): Observable<Error> => {
         log(`${operation} failed: ${error.message}`);
 
-        let errorMessage:string = error.status
+        let errorMessage:string = error.status + " "
 
         for(let detail in error.error){
             errorMessage += error.error[detail];

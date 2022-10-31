@@ -9,17 +9,20 @@
                 1   Choose a delivery adresse
             </h1>
             <div *ngIf="showFirst" class="adresse">
-                <ul>
+                <ul *ngIf="adresse">
                     <li>{{adresse?.address_line_1}}</li>
                     <li>{{adresse?.address_line_2}}</li>
                     <li>{{adresse?.city}}</li>
                     <li>{{adresse?.country}}</li>
                     <li>{{adresse?.zip_code}}</li>
                 </ul>
+                <div *ngIf="!adresse">
+                    choose an adresse
+                </div>
             </div>
         </div>
         <div *ngIf="!showFirst" class="expanded">
-            <app-edit-address></app-edit-address>
+            <app-edit-address (showFirstEvent)="showFirst = ($event)"></app-edit-address>
         </div>
         <div class="transi"></div>
         <div class="second row">

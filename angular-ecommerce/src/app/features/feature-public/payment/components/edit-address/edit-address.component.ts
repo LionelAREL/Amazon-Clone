@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { FetchDataService } from 'src/app/core/service/fetch-data.service';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-edit-address',
@@ -9,13 +11,15 @@ import { FetchDataService } from 'src/app/core/service/fetch-data.service';
 })
 export class EditAddressComponent implements OnInit {
 
-  constructor(private fetchData:FetchDataService) { }
+  constructor(private fetchData:FetchDataService,private router:Router) { }
 
   formAdresses:any = new FormGroup([]);
 
   selectedAdresse:any = undefined;
 
   adresses:any[] = []
+
+  @Output() showFirstEvent = new EventEmitter<boolean>();
 
   ngOnInit(): void {
     this.getAdresses()
@@ -27,6 +31,7 @@ export class EditAddressComponent implements OnInit {
         this.adresses = adresses;
         console.log(adresses)
         this.setFormArray();
+        this.selectedAdresse = this.adresses.find((adress) => adress.default === true)
     })
   }
 
@@ -43,12 +48,11 @@ export class EditAddressComponent implements OnInit {
   }
 
   submitAdresse(){
-    console.log("123");
     if(this.selectedAdresse != undefined){
       this.fetchData.postSelectedAddress(this.selectedAdresse).subscribe({
         next:(message) => {
           console.log(message)
-          // this.router.navigate([this.authService.redirectUrl != "" ? this.authService.redirectUrl : '/home']);
+          this.showFirstEvent.emit(true);
         },
         error:(messageError) => {
           console.log(messageError)

@@ -101,4 +101,12 @@ export class FetchDataService {
       catchError(handleErrorMessage<any>('cart')),
       );
   }
+
+  deleteAdresse(id:string){
+    return this.http.delete(this.BASE_URL + "address/" + id + "/",this.httpOptions).pipe(
+      tap((data) => log(data)),
+      map((data:any) => data.detail),
+      catchError(handleErrorMessage<any>('delete')),
+      );
+  }
 }
