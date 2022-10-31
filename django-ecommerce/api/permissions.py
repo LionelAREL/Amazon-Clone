@@ -18,3 +18,11 @@ class AddressRequired(BasePermission):
             return True
         else:
             return False
+
+class ArticleRequired(BasePermission):
+    message = 'article required'
+    def has_permission(self, request, view): 
+        if get_or_set_order(request).orderItems.all().exists():
+            return True
+        else:
+            return False

@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from django.shortcuts import get_object_or_404
 from rest_framework.viewsets import ReadOnlyModelViewSet,ModelViewSet
-from .permissions import IsAdminOrReadOnly, AddressRequired
+from .permissions import IsAdminOrReadOnly, AddressRequired, ArticleRequired
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
@@ -191,7 +191,7 @@ class OrderItemAdminViewset(MultipleSerializerMixin,ModelViewSet):
 
 @method_decorator(csrf_exempt, name='dispatch')
 class PaymentView(APIView):
-    permission_classes = [IsAuthenticated,AddressRequired]
+    permission_classes = [IsAuthenticated,AddressRequired,ArticleRequired]
     def get(self, request, *args, **kwargs):
         try :
             stripe.api_key = 'sk_test_51KyVnpBtHPWEuLFwI33xUlMRcm2CY0WiFvtQt7D4tY8emMBAD0kK5s9aC0z1bN3c9bqAmBGVhPwWZN8KRbdeemRC00mxdVboJC'
@@ -203,7 +203,7 @@ class PaymentView(APIView):
                             'unit_amount': x.product.price,
                             'product_data': {
                                 'name': x.product.name,
-                                'images': [x.product.image],
+                                'images': [x.product.image.url],
                             },
                         },
                         'quantity': x.quantity
