@@ -139,12 +139,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'backend/static/'
-
-STATICFILES_DIRS = [BASE_DIR / 'static/']
-MEDIA_URL = 'backend/media/'
-MEDIA_ROOT = BASE_DIR / "media/"
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -231,3 +225,8 @@ AWS_S3_SECRET_ACCESS_KEY = 'AJA83h6m69aSIrfXl0JR8a3hlPOx3sZA2du7uxYj'
 AWS_STORAGE_BUCKET_NAME = 'ecommerce-storage-lionel-arel'
 AWS_S3_SIGNATURE_VERSION = "s3v4"
 AWS_S3_REGION_NAME = "eu-west-3"
+AWS_DEFAULT_ACL = 'public-read'
+AWS_S3_CUSTOM_DOMAIN = 'ecommerce-storage-lionel-arel.s3.amazonaws.com'
+AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+AWS_LOCATION = 'static'
+STATIC_URL = f'https://ecommerce-storage-lionel-arel/{AWS_LOCATION}/'
