@@ -8,6 +8,8 @@ import { FetchDataService } from 'src/app/core/service/fetch-data.service';
 })
 export class AdressesComponent implements OnInit {
 
+  errorMessage:string = ""
+
   adresses:any;
   constructor(private fetchData:FetchDataService) { }
 
@@ -25,4 +27,16 @@ export class AdressesComponent implements OnInit {
     });
   }
 
+  deleteAdresse(id:any){
+    console.log("print")
+    this.fetchData.deleteAdresse(id).subscribe({
+      next:() => {
+        this.getAddresses();
+        // console.log(this.adresses);
+      },
+      error:(error) => {
+        this.errorMessage = error
+      }
+    });
+  }
 }

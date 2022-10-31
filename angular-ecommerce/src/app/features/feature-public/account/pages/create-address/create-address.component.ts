@@ -16,6 +16,7 @@ export class CreateAddressComponent implements OnInit {
     address_line_1: new FormControl(''),
     address_line_2: new FormControl(''),
     city: new FormControl(''),
+    country: new FormControl(''),
     zip_code: new FormControl(''),
     default: new FormControl(false),
     });
@@ -30,7 +31,7 @@ export class CreateAddressComponent implements OnInit {
     this.fetchData.postAddress(this.addressForm.value).subscribe({
       next:(response) => {
         this.message = response;
-        this.router.navigate(['/account'])
+        this.router.navigate(['/account/adresses'])
       },
       error: (error) => this.message = error,
     });

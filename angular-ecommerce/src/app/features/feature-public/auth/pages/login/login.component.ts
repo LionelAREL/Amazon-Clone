@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
   }
 
   onChange(){
+    console.log("change")
     this.message = "";
   }
 
@@ -52,6 +53,9 @@ export class LoginComponent implements OnInit {
           this.message = messageError;
         },
       });
+    }
+    else{
+      this.setError = true;
     }
   }
 

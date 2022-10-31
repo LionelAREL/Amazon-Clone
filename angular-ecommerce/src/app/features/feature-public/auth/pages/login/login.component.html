@@ -10,16 +10,22 @@
         </div>
         <app-input-card *ngSwitchCase="'emailInfo'">
             <label for="email">Email </label>
-            <input id="email" type="email" [formControl]="this.loginForm.controls.email" autofocus>
+            <input (ngModelChange)="onChange()" id="email" type="email" [formControl]="this.loginForm.controls.email" autofocus>
             <div *ngIf="this.loginForm.controls.email.errors?.['required'] && setError">
                 email is required.
-              </div>
+            </div>
+            <div *ngIf="this.loginForm.controls.email.errors?.['email'] && setError">
+                use a valid email.
+            </div>
         </app-input-card>
         <app-input-card *ngSwitchCase="'passwordInfo'">
             <div class="align">
                 <label for="password">Password </label><a href="">forgot your password ?</a>
             </div>
-                <input id="password" type="password" [formControl]="this.loginForm.controls.password" autofocus>
+                <input (ngModelChange)="onChange()" id="password" type="password" [formControl]="this.loginForm.controls.password" autofocus>
+                <div *ngIf="this.loginForm.controls.password.errors?.['required'] && setError">
+                    password is required.
+                </div>
         </app-input-card>
         <div *ngIf = "message">
             {{message}}

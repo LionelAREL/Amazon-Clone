@@ -20,14 +20,14 @@
         <label for='password'>
             Password 
         </label>
-        <input id='password'type="text" formControlName = 'password'>
+        <input type="password" id='password' formControlName = 'password'>
         <div *ngIf="this.registerForm.controls.password?.errors?.['required'] && setError">
             passwordd required
         </div>
         <label for='rePassword'>
             Re-enter password
         </label>
-        <input id='rePassword' type="rePassword" formControlName = 'rePassword'>
+        <input  type="password" id='rePassword' formControlName = 'rePassword'>
         <div *ngIf="this.registerForm?.errors?.['mismatch'] && setError">
             password must match
         </div>

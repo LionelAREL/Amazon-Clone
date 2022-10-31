@@ -13,18 +13,26 @@
                     default : 
                     <img src="./../../assets/amazon-logo-entire.png" alt="">
                 </div>
-                <ul>
-                    <li>{{adresse.address_line_1}}</li>
-                </ul>
-                <ul>
-                    <li>{{adresse.address_line_1}}</li>
-                </ul>
-                <ul>
-                    <li>{{adresse.city}}, {{adresse.zip_code}}</li>
-                </ul>
-                <ul>
-                    <li>{{adresse.country}}</li>
-                </ul>
+                <div class="details">
+                    <ul>
+                        <li>{{adresse.address_line_1}}</li>
+                    </ul>
+                    <ul>
+                        <li>{{adresse.address_line_2}}</li>
+                    </ul>
+                    <ul>
+                        <li>{{adresse.city}}, {{adresse.zip_code}}</li>
+                    </ul>
+                    <ul>
+                        <li>{{adresse.country}}</li>
+                    </ul>
+                    <div class="update">
+                        <a (click) = "deleteAdresse(adresse.id)">delete</a>
+                        <div class="separator">|</div>
+                        <div>update</div>
+                    </div>
+                    <div *ngIf="errorMessage">{{errorMessage}}</div>
+                </div>
             </div>
     
         </div>

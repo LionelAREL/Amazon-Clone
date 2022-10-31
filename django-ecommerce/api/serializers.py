@@ -31,7 +31,7 @@ class AddressPublicSerializer(serializers.ModelSerializer):
 class AddressCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Address
-        fields = ['address_line_1','address_line_2','city','zip_code','default']
+        fields = ['address_line_1','address_line_2','city','zip_code','default','country']
     def create(self, validated_data):
         return Address.objects.create(**validated_data,user=self.context['request'].user)
 

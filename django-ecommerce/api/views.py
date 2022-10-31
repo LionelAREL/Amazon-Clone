@@ -18,6 +18,7 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework import filters
 from django_filters.rest_framework import DjangoFilterBackend
 from authentification.serializers import UserPublicEditSerializer
+from rest_framework.decorators import action
 
 
 """
@@ -128,6 +129,20 @@ class AddressViewset(MultipleSerializerMixin,ModelViewSet):
     update_serializer_class = AddressCreateSerializer
     def get_queryset(self):
         return Address.objects.filter(user=self.request.user)
+        
+
+    def destroy(self, request, pk=None):
+        if pk is not None :
+            adress = get_object_or_404(Address,id=pk,user=request.user)
+            if(adress.default is False):
+                adress.delete()
+                return Response({'detail':"adresse destroy : " + pk },status = 200)
+            else:
+                return Response({'detail':"cannot delete default adresse" },status = 400)
+
+            
+        else :
+            return Response({'detail':"error can't find adresse " + pk },status = 400)
 
 
 """
@@ -188,7 +203,7 @@ class PaymentView(APIView):
                             'unit_amount': x.product.price,
                             'product_data': {
                                 'name': x.product.name,
-                                'images': ['https://i.imgur.com/EHyR2nP.png'],
+                                'images': [x.product.image],
                             },
                         },
                         'quantity': x.quantity
