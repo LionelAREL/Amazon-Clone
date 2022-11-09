@@ -35,7 +35,7 @@ export class PublicHeaderComponent implements OnInit {
         console.log(session)
         this.cartNumber = session.cartNumber;
         this.address = session.address?.city
-        this.name = session?.user.name;
+        this.name = session?.user?.name;
       },
       error:(error) => {},
     });
