@@ -1,4 +1,6 @@
 #!/bin/bash
+# deplace to project directory
+cd /home/ubuntu/angular-django-ecommerce/django-ecommerce
 
 #migrations
 source env/bin/activate
