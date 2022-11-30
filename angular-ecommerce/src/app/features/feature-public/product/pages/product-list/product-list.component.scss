@@ -35,17 +35,24 @@
         border: 1px solid #f5f5f5;
         border-radius: 4px;
         margin: 10px 20px;
-        .photo{
+        .image-container{
+            height: 180px;
             width: 100%;
+            display: flex;
+            justify-content: center;
+            .photo{
+                max-width: 100%;
+                max-height: 100%;
+            }
         }
     }
     .prime{
         width: 100px;
     }
     .description{  
-        margin: 30px 0;  	
+        margin: 30px 0 0;  	
         word-wrap:break-word;
-        max-height: 40px;
+        max-height: 74px;
         overflow: hidden;
     }
     .quantity{

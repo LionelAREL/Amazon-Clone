@@ -1,7 +1,7 @@
 <div class="container">
     <div *ngFor="let product of products | paginate:config"> 
         <div class="product">
-            <a [routerLink]="['/product',product.id]"><img class="photo" src="{{product.image}}" alt=""></a>
+            <div class="image-container" [routerLink]="['/product',product.id]"><img class="photo" src="{{product.image}}" alt=""></div>
             <h3>{{product.name}}</h3>
             <h2>{{product.price/100}} €</h2>
             <div class="row"><img class="prime" src="./../../assets/prime.png" alt="">&nbsp;Free delivery</div>
