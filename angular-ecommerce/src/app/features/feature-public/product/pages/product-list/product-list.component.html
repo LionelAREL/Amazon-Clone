@@ -23,11 +23,11 @@
     {{messageError}}
 </div>
 
-<pagination-controls 
+<pagination-controls class="pagination"
 [id]="config.id"
 [maxSize]="maxSize"
 [directionLinks]="directionLinks"
-[autoHide]="autoHide"
+[autoHide]="false"
 [responsive]="responsive"
 [previousLabel]="labels.previousLabel"
 [nextLabel]="labels.nextLabel"
@@ -35,5 +35,6 @@
 [screenReaderPageLabel]="labels.screenReaderPageLabel"
 [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel"
 (pageChange)="onPageChange($event)"
-(pageBoundsCorrection)="onPageBoundsCorrection($event)">
+(pageBoundsCorrection)="onPageBoundsCorrection($event)"
+>
 </pagination-controls>

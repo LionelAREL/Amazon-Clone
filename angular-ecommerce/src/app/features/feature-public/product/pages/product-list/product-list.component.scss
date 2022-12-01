@@ -62,3 +62,6 @@
         justify-content: space-between;
     }
 }
+.pagination ::ng-deep .ngx-pagination {
+    text-align: center;
+  }

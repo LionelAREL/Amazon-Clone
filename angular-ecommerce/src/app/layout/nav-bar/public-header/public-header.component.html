@@ -10,7 +10,7 @@
     </div>
     <div class="searchBar">
         <div>
-            <input #input type="text">
+            <input (keydown.enter)= "submit($event,input)" #input type="text">
             <button (click) = "submit($event,input)"><img src="./../../assets/search.svg" alt=""></button>
         </div>
             <select class="selectButton" (change)="changeCategory($event)">

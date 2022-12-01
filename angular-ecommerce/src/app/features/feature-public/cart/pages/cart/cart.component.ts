@@ -45,7 +45,7 @@ export class CartComponent implements OnInit {
   addToCart(productId:any,quantity:any){
     if(productId != null){
       this.fetchData.addToCart(productId,quantity,false).subscribe({
-        next:(detail) => {console.log(detail);this.eventService.emmitEvent({name:"addToCart"});quantity == 0 ? this.getCart() : ""},
+        next:(detail) => {console.log(detail);this.eventService.emmitEvent({name:"addToCart"});quantity == 0 ? this.getCart() : "";this.totalOrder()},
         error:(error) => console.log(error),
       })
     }
