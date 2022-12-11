@@ -1,0 +1,36 @@
+.container{
+    background-image: linear-gradient(to bottom, transparent 30%, #1a98ff 30%, #eaeded 100%), url("./../../../../assets/background.jpg");
+    width: 100%;
+    min-height: 1000px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-origin: border-box;
+    background-clip: border-box;
+    box-sizing: border-box;
+    
+    .list{
+        margin: 300px auto;
+        box-sizing: border-box;
+        min-height: 500px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 95%;
+        justify-content: space-between;
+        .block{
+            margin:20px 30px;
+            padding: 20px 18px;
+            background-color: white;
+            width: 320px;
+            height: 420px;
+            h1{
+                margin: 0;
+                margin-bottom: 20px;
+            }
+            .img{
+                width: 90%;
+
+            }
+        }
+    }
+}
