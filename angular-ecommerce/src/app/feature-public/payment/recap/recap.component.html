@@ -1,0 +1,75 @@
+<div class="container">
+    <div class="containerLeft">
+        <a class="expand" (click)="updateShowFirst()">custom</a>
+        <div class="first row">
+            <h1 *ngIf="showFirst" class="left">
+                1   Delivery adress
+            </h1>
+            <h1 *ngIf="!showFirst" class="left">
+                1   Choose a delivery adresse
+            </h1>
+            <div *ngIf="showFirst" class="adresse">
+                <ul *ngIf="adresse">
+                    <li>{{adresse?.address_line_1}}</li>
+                    <li>{{adresse?.address_line_2}}</li>
+                    <li>{{adresse?.city}}</li>
+                    <li>{{adresse?.country}}</li>
+                    <li>{{adresse?.zip_code}}</li>
+                </ul>
+                <div *ngIf="!adresse">
+                    choose an adresse
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!showFirst" class="expanded">
+            <app-edit-address (showFirstEvent)="showFirst = ($event)"></app-edit-address>
+        </div>
+        <div class="transi"></div>
+        <div class="second row">
+            <h1 class="left">
+                2   Payment method
+            </h1>
+            <div class="right">
+                <div class="row align-center">
+                    <img class="stripe" src="./../../assets/Stripe-logo.png" alt="">
+                    <div>Stripe payment </div>
+                    <a href="">custom</a>
+                </div>
+                <div class="billing">billing adresse identical to the delivery adresse</div>
+            </div>
+        </div>
+        <div class="transi"></div>
+        <div class="third">
+            <h1 class="left">
+                3   Verification and command validation
+            </h1>
+            <app-cart-list></app-cart-list>
+        </div>
+        <div class="payment">
+            <button class="button-yellow-payment" (click)="payment()">Payment</button>
+            <div class="right">
+                <h2>Total Order :{{total}} €</h2>
+                <div>
+                By placing your order, you agree to the Amazon Terms of Sale. Please see our Privacy Notice, our Notice Cookies and our Notice Advertisements based on your interests.                </div>
+            </div>
+        </div>
+        <div *ngIf="message">
+            {{message}}
+        </div>
+    </div>
+    <div class="containerRight">
+        <div class="checkout">
+            <button class="button-yellow-payment right-button" (click)="payment()">Payment</button>
+            <div class="conditions">
+                By placing your order, you agree to the Amazon Terms of Sale. Please see our Privacy Notice, our Notice Cookies and our Notice Advertisements based on your interests.
+            </div>
+            <div class="transi"></div>
+            <h2>Details of order</h2>
+            <div>Article : {{total}} €</div>
+            <div>Delivery : 0 €</div>
+            <div class="transi"></div>
+            <h2>Total order : {{total}} €</h2>
+        </div>
+    </div>
+
+</div>

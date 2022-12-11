@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  baseUrl:'https://www.amazon.lionel-arel.com/backend/',
+
 };
