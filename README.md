@@ -1,5 +1,8 @@
 <h1 align="center">Amazon Clone</h1>
-
+<p align="center">
+  Be sure to ⭐ my repo so you can keep up to date on any daily progress ! ❤
+</p>
+<br>
 Clone of amazon with all major features ! 
 <br>
 Contains CRUD, advanced patterns and try to respect clean architecture. 📂
@@ -19,6 +22,14 @@ Contains CRUD, advanced patterns and try to respect clean architecture. 📂
 - [x] Manage your cart
 - [x] Redirect to the Stripe payment with the details of your cart
 - [x] After paiement, update the stocks
+
+
+## Stack
+- Angular
+- Angular-material
+- Django Rest Framework
+- Html/Css
+
 
 ## Setup
 ### Frontend
