@@ -11,10 +11,10 @@
         <app-input-card *ngSwitchCase="'emailInfo'">
             <label for="email">Email </label>
             <input (ngModelChange)="onChange()" id="email" type="email" [formControl]="this.loginForm.controls.email" autofocus>
-            <div *ngIf="this.loginForm.controls.email.errors?.['required'] && setError">
+            <div class="error-message" *ngIf="this.loginForm.controls.email.errors?.['required'] && setError">
                 email is required.
             </div>
-            <div *ngIf="this.loginForm.controls.email.errors?.['email'] && setError">
+            <div class="error-message" *ngIf="this.loginForm.controls.email.errors?.['email'] && setError">
                 use a valid email.
             </div>
         </app-input-card>
@@ -23,11 +23,11 @@
                 <label for="password">Password </label><a href="">forgot your password ?</a>
             </div>
                 <input (ngModelChange)="onChange()" id="password" type="password" [formControl]="this.loginForm.controls.password" autofocus>
-                <div *ngIf="this.loginForm.controls.password.errors?.['required'] && setError">
+                <div class="error-message" *ngIf="this.loginForm.controls.password.errors?.['required'] && setError">
                     password is required.
                 </div>
         </app-input-card>
-        <div *ngIf = "message">
+        <div class="error-message" *ngIf = "message">
             {{message}}
         </div>
         <button class="button-yellow-auth" *ngIf="this.currentStep === 'emailInfo'" (click)="changeStep($event,true)">Continue</button>

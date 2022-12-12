@@ -15,6 +15,7 @@ export class RecapComponent implements OnInit {
   total:number = 0;
 
   showFirst:boolean = true;
+  message:string = "";
 
   constructor(private fetchData:FetchDataService, private router:Router,private authService:AuthService) { }
 
@@ -23,7 +24,6 @@ export class RecapComponent implements OnInit {
     this.getCart();
   }
 
-  message:string = "";
 
   payment(){
     this.fetchData.stripeUrl().subscribe({

@@ -17,12 +17,35 @@ export class PublicHeaderComponent implements OnInit {
   name:string ="";
   categories:any;
   selectedCategory:string = "";
+  notifications:any[] = [];
+  TIME_OUT_NOTIFICATION = 3000;
 
   constructor(private authService:AuthService, private router: Router,private eventService:EventService,private fetchData:FetchDataService) { }
 
   ngOnInit(): void {
     this.getSession();
     this.eventService.eventSubject.subscribe((event)=>{
+      console.log("event : " + event.name,event);
+      if(event.name == "add-to-cart-success"){
+        this.fetchData.product(event.details.product).subscribe((product:any) => {
+          let msg = ""
+          if(event.add){
+            msg = "added to cart"
+          }
+          else{
+            if(event.details.quantity != 0){
+              msg="updated cart"
+            }else{
+              msg="deleted"
+            }
+          }
+          let not = {product,open:true,msg}
+          this.notifications.push(not)
+          setTimeout(() => {
+            not.open=false;
+          },this.TIME_OUT_NOTIFICATION)
+        });
+      }
       this.getSession();
     })
     this.getCategories();
