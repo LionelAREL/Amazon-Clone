@@ -13,7 +13,7 @@ Contains CRUD, advanced patterns and try to respect clean architecture. 📂
 </p>
 
 <p align="center">
-  <a href="https://amazon.lionel-arel.com">👋 demo here !</a>
+  <a href="https://amazon.lionel-arel.com" target="_blank">👋 demo here !</a>
 </p>
 
 ## Features
@@ -64,4 +64,4 @@ Contains CRUD, advanced patterns and try to respect clean architecture. 📂
 - <https://github.com/lionelAREL>
 ## Copyright and license
 Code and documentation copyright 2021 the authors. Code released under the
-[MIT License].
+[MIT License](https://github.com/LionelAREL/Amazon-Clone/blob/main/LICENSE.md).
