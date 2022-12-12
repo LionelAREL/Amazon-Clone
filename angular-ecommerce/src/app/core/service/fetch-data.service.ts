@@ -4,6 +4,7 @@ import { map, catchError, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { log, handleErrorMessage, handleError } from '../utils/auth.utils';
 import { CookieService } from 'ngx-cookie';
+import { EventService } from './event.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class FetchDataService {
     withCredentials:true,
   };
 
-  constructor(private http: HttpClient,private cookieService: CookieService) { }
+  constructor(private http: HttpClient,private cookieService: CookieService,private eventService:EventService) { }
 
   cart(){
     return this.http.get(this.BASE_URL + "cart/",{withCredentials:true}).pipe(
@@ -55,6 +56,7 @@ export class FetchDataService {
   }
   ordered(){
     return this.http.get(this.BASE_URL + "order/",this.httpOptions).pipe(
+      
       catchError(handleErrorMessage<any>('order')),
       );
   }
@@ -96,8 +98,10 @@ export class FetchDataService {
 
   addToCart(productId:string,quantity:number,add:boolean){
     return this.http.post(this.BASE_URL + "cart/?add=" + (add ? "true" : "false"),{product:productId,quantity:quantity},this.httpOptions).pipe(
-      tap((data) => log(data)),
-      map((data:any) => data.detail),
+      tap((data:any) => {
+        console.log("data",data);
+        this.eventService.emmitEvent({name:"add-to-cart-success",details:data,add,quantity});
+      }),
       catchError(handleErrorMessage<any>('cart')),
       );
   }

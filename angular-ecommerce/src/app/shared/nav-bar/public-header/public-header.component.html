@@ -48,3 +48,21 @@
         </ul>
     </nav>
 </div>
+
+<div class="notifications">
+    <div *ngFor="let notification of notifications">
+        <div *ngIf="notification.open" class="notification">
+            <img class="product-image" src="{{notification.product.image}}" alt="">
+            <div class="content">
+                <div class="name">
+                    {{notification.product.name}} 
+                </div>
+                <div class="message-content">
+                    <img class="success-logo" src="./../../../assets/success.png" alt="">
+                    succefully {{notification.msg}}
+                </div>
+            </div>
+            <button class="close" (click)="notification.open = false"><img src="./../../../assets/close.png" alt=""></button>
+        </div>
+    </div>
+</div>

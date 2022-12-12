@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { log, handleErrorMessage, handleError} from '../utils/auth.utils';
+import { EventService } from './event.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,20 +22,28 @@ export class AuthService {
     withCredentials:true,
   };
 
-  constructor(private http:HttpClient) { 
+  constructor(private http:HttpClient, private eventService:EventService) { 
     this.refreshSession();
   }
 
   login(email:any,password:any):Observable<any>{
     return this.http.post(this.BASE_URL + "login/",{'email':email,'password':password},this.httpOptions).pipe(
-      tap((data) => log(data)),
+      tap((data) => {
+        log(data);
+        this.eventService.emmitEvent({name:"login-success"});
+      }),
       map((data:any) => data.detail),
+      
       catchError(handleErrorMessage<any>('login')),
     );
 }
 
   logout(){
     return this.http.get(this.BASE_URL + "logout/",{withCredentials:true}).pipe(
+      tap((data) => {
+        log(data);
+        this.eventService.emmitEvent({name:"logout-success"});
+      }),
       map((data:any) => data.detail),
       catchError(handleErrorMessage<any>('logout')),
     );
@@ -55,7 +64,10 @@ export class AuthService {
 
   register(user:any){
     return this.http.post(this.BASE_URL + "register/",user,this.httpOptions).pipe(
-      tap((data) => log(data)),
+      tap((data) => {
+        log(data);
+        this.eventService.emmitEvent({name:"register-success"});
+      }),
       map((data:any) => data.detail),
       catchError(handleErrorMessage<any>('register')),
     );
