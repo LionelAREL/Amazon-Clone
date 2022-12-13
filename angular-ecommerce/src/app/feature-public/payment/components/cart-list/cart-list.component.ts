@@ -4,7 +4,7 @@ import { FetchDataService } from 'src/app/core/service/fetch-data.service';
 @Component({
   selector: 'app-cart-list',
   templateUrl: './cart-list.component.html',
-  styleUrls: ['./cart-list.component.sass']
+  styleUrls: ['./cart-list.component.scss']
 })
 export class CartListComponent implements OnInit {
 
