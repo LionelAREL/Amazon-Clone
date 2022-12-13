@@ -9,6 +9,7 @@ import { PublicHeaderAuthComponent } from './nav-bar/public-header-auth/public-h
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AutoFocus } from './directives/autofocus';
 
 
 
@@ -21,6 +22,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     PublicFooterAuthComponent,
     PublicHeaderComponent,
     PublicHeaderAuthComponent,
+    AutoFocus,
   ],
   imports: [
     ReactiveFormsModule,
@@ -32,6 +34,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     PublicLayoutComponent,
     PublicLayoutComponentAuth,
+    AutoFocus,
   ]
 })
 export class SharedModule { }

@@ -42,6 +42,7 @@
             flex-direction: row;
         }
         .first {
+            align-items: baseline;
             .adresse{
                 ul{
                     margin: 0;
@@ -50,6 +51,9 @@
                         
                     }
                 }
+            }
+            .choose{
+                margin-left: 8px;
             }
         }
         .second{

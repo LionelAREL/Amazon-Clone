@@ -19,6 +19,7 @@ from rest_framework import filters
 from django_filters.rest_framework import DjangoFilterBackend
 from authentification.serializers import UserPublicEditSerializer
 from rest_framework.decorators import action
+from decouple import config
 
 
 """
@@ -194,8 +195,11 @@ class PaymentView(APIView):
     permission_classes = [IsAuthenticated,AddressRequired,ArticleRequired]
     def get(self, request, *args, **kwargs):
         try :
-            stripe.api_key = 'sk_test_51KyVnpBtHPWEuLFwI33xUlMRcm2CY0WiFvtQt7D4tY8emMBAD0kK5s9aC0z1bN3c9bqAmBGVhPwWZN8KRbdeemRC00mxdVboJC'
-            YOUR_DOMAIN = 'http://localhost:8000'
+            stripe.api_key = config("STRIPE_KEY",default='sk_test_51KyVnpBtHPWEuLFwI33xUlMRcm2CY0WiFvtQt7D4tY8emMBAD0kK5s9aC0z1bN3c9bqAmBGVhPwWZN8KRbdeemRC00mxdVboJC',cast=str)
+            YOUR_DOMAIN = config("DOMAINS",default="http://localhost:4200",cast=str)
+            SUCCESS_URL_STRIPE = config("SUCCESS_URL_STRIPE",default="http://localhost:4200/home",cast=str)
+            FAIL_URL_STRIPE = config("FAIL_URL_STRIPE",default="http://localhost:4200/home",cast=str)
+            print(SUCCESS_URL_STRIPE,FAIL_URL_STRIPE,YOUR_DOMAIN)
             order = get_or_set_order(request)
             items = [{
                         'price_data': {
@@ -215,13 +219,14 @@ class PaymentView(APIView):
                 payment_intent_data={
                     'capture_method': 'manual',
                 },
-                success_url="https://www.amazon-lionel-arel.ga/cart",
-                cancel_url="https://www.amazon-lionel-arel.ga/cart",
+                success_url=SUCCESS_URL_STRIPE,
+                cancel_url=FAIL_URL_STRIPE,
             )
             order.payment_id = checkout_session.stripe_id
             order.save()
             return Response({'payment_url':checkout_session.url})
         except Exception as e:
+            print(e)
             return Response({'detail':f"{e}"})
 
 
