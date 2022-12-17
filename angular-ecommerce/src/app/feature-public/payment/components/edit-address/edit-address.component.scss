@@ -2,7 +2,7 @@
 
 .container{
     width: 760px;
-    height: 380px;
+    height: fit-content;
     border-radius: 8px;
     padding: 14px 18px;
     border: 1px #D5D9D9 solid;
@@ -30,6 +30,16 @@
         border-radius: 8px;
         padding: 3px 10px;
         font-size: 16px;
+        cursor: pointer;
+    }
+
+    .create__message{
+        margin-bottom: 20px;
+        cursor: pointer;
+    }
+
+    .select__address{
+        margin-top: 20px;
         cursor: pointer;
     }
 }

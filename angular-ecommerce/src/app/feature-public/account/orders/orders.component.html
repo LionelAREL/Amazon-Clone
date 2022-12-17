@@ -1,4 +1,5 @@
 <div class="container">
+    <app-return-to-page [currentPage]="'Order'"></app-return-to-page>
     <h1>Your Orders</h1>
     <div *ngIf="ordered" class="list">
         <div *ngFor="let order of ordered" class="card">

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FetchDataService } from 'src/app/core/service/fetch-data.service';
 import { Output, EventEmitter } from '@angular/core';
@@ -19,6 +19,8 @@ export class EditAddressComponent implements OnInit {
 
   adresses:any[] = []
 
+  showCreateAddress:boolean = false;
+
   @Output() showFirstEvent = new EventEmitter<boolean>();
 
   ngOnInit(): void {
@@ -33,6 +35,11 @@ export class EditAddressComponent implements OnInit {
         this.setFormArray();
         this.selectedAdresse = this.adresses.find((adress) => adress.default === true)
     })
+  }
+
+  updateShowCreateAddress(){
+    this.showCreateAddress = !this.showCreateAddress;
+    this.getAdresses()
   }
 
   setFormArray(){

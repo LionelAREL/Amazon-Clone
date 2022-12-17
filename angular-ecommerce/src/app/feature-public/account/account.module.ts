@@ -1,15 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
+import { NgModule } from '@angular/core'
 import { AccountRoutingModule } from './account-routing.module';
 import { AccountComponent } from './account/account.component';
 import { ConnexionSecurityComponent } from './connexion-security/connexion-security.component';
 import { CreateAddressComponent } from './create-address/create-address.component';
-import { AddAddressComponent } from './components/add-address/add-address.component';
-import { AddressComponent } from './components/address/address.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { AdressesComponent } from './adresses/adresses.component';
 import { OrdersComponent } from './orders/orders.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedPublicModule } from '../shared-public/shared-public.module';
 
 
 @NgModule({
@@ -17,15 +14,14 @@ import { OrdersComponent } from './orders/orders.component';
     AccountComponent,
     ConnexionSecurityComponent,
     CreateAddressComponent,
-    AddAddressComponent,
-    AddressComponent,
     AdressesComponent,
     OrdersComponent,
+    AdressesComponent,
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     AccountRoutingModule,
-    ReactiveFormsModule,
+    SharedPublicModule
   ]
 })
 export class AccountModule { }
