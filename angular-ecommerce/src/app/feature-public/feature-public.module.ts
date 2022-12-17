@@ -8,6 +8,7 @@ import { PaymentModule } from './payment/payment.module';
 import { ErrorModule } from './error/error.module';
 import { AccountModule } from './account/account.module';
 import { SharedModule } from '../shared/shared.module';
+import { SharedPublicModule } from './shared-public/shared-public.module';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { SharedModule } from '../shared/shared.module';
     PaymentModule,
     ErrorModule,
     AccountModule,
+    SharedPublicModule,
   ]
 })
 export class FeaturePublicModule { }

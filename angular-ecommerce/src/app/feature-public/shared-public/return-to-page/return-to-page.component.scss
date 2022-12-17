@@ -1,0 +1,17 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+    padding-top:20px;
+    .link__element{
+        display: flex;
+        flex-direction: row;
+        column-gap: 20px;
+        color: black;
+        text-decoration: none;
+
+        span{
+            margin-top: 1px;
+        }
+    }
+}

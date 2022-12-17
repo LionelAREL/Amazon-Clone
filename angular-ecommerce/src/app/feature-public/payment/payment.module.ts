@@ -8,12 +8,13 @@ import { EditAddressComponent } from './components/edit-address/edit-address.com
 import { MatExpansionModule } from '@angular/material/expansion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { SharedPublicModule } from '../shared-public/shared-public.module';
 
 @NgModule({
   declarations: [
     RecapComponent,
     CartListComponent,
-    EditAddressComponent
+    EditAddressComponent,
   ],
   imports: [
     CommonModule,
@@ -22,6 +23,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    SharedPublicModule
   ]
 })
 export class PaymentModule { }

@@ -1,0 +1,5 @@
+<div class="container">
+    <a class="link__element" routerLink="/account"><div>Account</div></a>
+    <a class="link__element" *ngIf="transitionPage"  routerLink="/{{transitionPage}}"><span> > </span><div>{{transitionPageName}}</div></a>
+    <div class="link__element"><span> > </span><div>{{currentPage}}</div></div>
+</div>

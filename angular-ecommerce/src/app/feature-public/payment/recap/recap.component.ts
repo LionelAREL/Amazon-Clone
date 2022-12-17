@@ -38,7 +38,6 @@ export class RecapComponent implements OnInit {
   getSession(){
     this.authService.session().subscribe({
       next:(session) => {
-        console.log(session)
         this.adresse = session?.address;
       },
       error:(error) => {},

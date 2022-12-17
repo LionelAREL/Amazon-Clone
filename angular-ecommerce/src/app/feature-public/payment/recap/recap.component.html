@@ -1,6 +1,7 @@
 <div class="container">
     <div class="containerLeft">
         <a class="expand" (click)="updateShowFirst()">custom</a>
+        
         <div class="first row">
             <h1 *ngIf="showFirst" class="left">
                 1   Delivery adress
@@ -22,9 +23,13 @@
             </div>
         </div>
         <div *ngIf="!showFirst" class="expanded">
-            <app-edit-address (showFirstEvent)="showFirst = ($event)"></app-edit-address>
+            <app-edit-address (showFirstEvent)="updateShowFirst()"></app-edit-address>
         </div>
+
+
         <div class="transi"></div>
+
+
         <div class="second row">
             <h1 class="left">
                 2   Payment method

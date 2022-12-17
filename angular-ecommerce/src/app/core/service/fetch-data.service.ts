@@ -13,15 +13,19 @@ export class FetchDataService {
 
   BASE_URL = environment.baseUrl + "api/";
 
-  httpOptions = {
-    headers: new HttpHeaders({ 
-      'Content-Type': 'application/json',
-      'X-csrfToken':this.cookieService.get("csrftoken") as any,
-   }),
-    withCredentials:true,
-  };
 
   constructor(private http: HttpClient,private cookieService: CookieService,private eventService:EventService) { }
+
+  getHeader(){
+    return {
+      headers: new HttpHeaders({ 
+        'Content-Type': 'application/json',
+        'X-csrfToken':this.cookieService.get("csrftoken") as any,
+     }),
+      withCredentials:true,
+    };
+  }
+
 
   cart(){
     return this.http.get(this.BASE_URL + "cart/",{withCredentials:true}).pipe(
@@ -45,31 +49,31 @@ export class FetchDataService {
   }
 
   addresses(){
-    return this.http.get(this.BASE_URL + "address/",this.httpOptions).pipe(
+    return this.http.get(this.BASE_URL + "address/",this.getHeader()).pipe(
       catchError(handleErrorMessage<any>('address')),
       );
   }
   categories(){
-    return this.http.get(this.BASE_URL + "category/",this.httpOptions).pipe(
+    return this.http.get(this.BASE_URL + "category/",this.getHeader()).pipe(
       catchError(handleErrorMessage<any>('category')),
       );
   }
   ordered(){
-    return this.http.get(this.BASE_URL + "order/",this.httpOptions).pipe(
+    return this.http.get(this.BASE_URL + "order/",this.getHeader()).pipe(
       
       catchError(handleErrorMessage<any>('order')),
       );
   }
 
   postAddress(address:any){
-    return this.http.post(this.BASE_URL + "address/",address,this.httpOptions).pipe(
+    return this.http.post(this.BASE_URL + "address/",address,this.getHeader()).pipe(
       tap((data) => log(data)),
       map((data:any) => data.detail),
       catchError(handleErrorMessage<any>('address')),
       );
   }
   postSelectedAddress(address:any){
-    return this.http.post(this.BASE_URL + "selected-address/",{"id":address.id.toString()},this.httpOptions).pipe(
+    return this.http.post(this.BASE_URL + "selected-address/",{"id":address.id.toString()},this.getHeader()).pipe(
       tap((data) => log(data)),
       map((data:any) => data.detail),
       catchError(handleErrorMessage<any>('address')),
@@ -83,7 +87,7 @@ export class FetchDataService {
   }
 
   putUser(user:any){
-    return this.http.put(this.BASE_URL + "user/",user,this.httpOptions).pipe(
+    return this.http.put(this.BASE_URL + "user/",user,this.getHeader()).pipe(
       tap((data) => log(data)),
       map((data:any) => data.detail),
       catchError(handleErrorMessage<any>('user')),
@@ -97,7 +101,7 @@ export class FetchDataService {
   }
 
   addToCart(productId:string,quantity:number,add:boolean){
-    return this.http.post(this.BASE_URL + "cart/?add=" + (add ? "true" : "false"),{product:productId,quantity:quantity},this.httpOptions).pipe(
+    return this.http.post(this.BASE_URL + "cart/?add=" + (add ? "true" : "false"),{product:productId,quantity:quantity},this.getHeader()).pipe(
       tap((data:any) => {
         console.log("data",data);
         this.eventService.emmitEvent({name:"add-to-cart-success",details:data,add,quantity});
@@ -107,7 +111,7 @@ export class FetchDataService {
   }
 
   deleteAdresse(id:string){
-    return this.http.delete(this.BASE_URL + "address/" + id + "/",this.httpOptions).pipe(
+    return this.http.delete(this.BASE_URL + "address/" + id + "/",this.getHeader()).pipe(
       tap((data) => log(data)),
       map((data:any) => data.detail),
       catchError(handleErrorMessage<any>('delete')),

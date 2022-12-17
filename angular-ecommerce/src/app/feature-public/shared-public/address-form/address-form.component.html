@@ -1,0 +1,28 @@
+<form [formGroup]="addressForm" (ngSubmit)="submit()">
+    <h2>Add a new address</h2>
+  
+    <label for="address_line_1">Address </label>
+    <input id="address_line_1" type="text" formControlName="address_line_1">
+    <input id="address_line_2" type="text" formControlName="address_line_2">
+    
+    <label for="country">Country </label>
+    <input id="country" type="text" formControlName="country">
+
+    <label for="city">City </label>
+    <input id="city" type="text" formControlName="city">
+
+    <label for="zip_code">Zip code</label>
+    <input id="zip_code" type="text" formControlName="zip_code">
+
+    <div class="default">
+        <label for="default">default: </label>
+        <input id="default" type="checkbox" formControlName="default">
+    </div>
+
+    <button class="button" type="submit" [disabled]="!addressForm.valid">Add an adresse</button>
+    
+    <div class="message__information">
+        {{message}}
+    </div>
+
+</form>

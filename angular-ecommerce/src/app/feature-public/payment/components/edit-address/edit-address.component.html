@@ -1,7 +1,10 @@
 <div class="container">
     <h1>Your adresses</h1>
     <div class="line"></div>
-    <form *ngIf="adresses" [formGroup]="formAdresses"  (submit)="submitAdresse()">
+
+    <div class="create__message" (click)="updateShowCreateAddress()">create a new address</div>
+
+    <form *ngIf="adresses && !showCreateAddress" [formGroup]="formAdresses"  (submit)="submitAdresse()">
         <div *ngFor="let adresse of adresses" class="list">
             <label for="{{adresse.zip_code}}">
                 <div class="adresse" *ngIf="adresse.default">
@@ -16,4 +19,11 @@
         </div>
         <button class="button" type="submit">Send this adresse</button>
     </form>
+
+    <div *ngIf="showCreateAddress" >
+        <app-address-form></app-address-form>
+        <div class="select__address" (click)="updateShowCreateAddress()"> 
+            select delivery address
+        </div>
+    </div>
 </div>

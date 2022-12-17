@@ -1,4 +1,5 @@
 <div class="container">
+    <app-return-to-page [currentPage]="'addresses'"></app-return-to-page>
     <h1>Your adresses</h1>
     <div class = "blocks">
         <div class="list">
@@ -31,10 +32,10 @@
                         <div class="separator">|</div>
                         <div>update</div>
                     </div>
-                    <div *ngIf="errorMessage">{{errorMessage}}</div>
                 </div>
             </div>
-    
+            
         </div>
+        <div style="color:red" *ngIf="errorMessage">{{errorMessage}}</div>
     </div>
 </div>
