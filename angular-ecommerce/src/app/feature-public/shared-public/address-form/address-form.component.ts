@@ -29,12 +29,27 @@ export class AddressFormComponent implements OnInit {
   submit(){
     console.log(this.addressForm)
     this.fetchData.postAddress(this.addressForm.value).subscribe({
-      next:(response) => {
+      next:(response:any) => {
         this.message = "Your address was created"; 
+        console.log(response)
+        if(response.default){
+          this.submitAdresse(response)
+        }
       },
       error: (error) => {
 
       },
     });
+  }
+
+  submitAdresse(addresse:any){
+    this.fetchData.postSelectedAddress(addresse).subscribe({
+      next:(message) => {
+        console.log(message)
+      },
+      error:(messageError) => {
+        console.log(messageError)
+      },
+    })
   }
 }

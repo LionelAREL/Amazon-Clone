@@ -68,7 +68,6 @@ export class FetchDataService {
   postAddress(address:any){
     return this.http.post(this.BASE_URL + "address/",address,this.getHeader()).pipe(
       tap((data) => log(data)),
-      map((data:any) => data.detail),
       catchError(handleErrorMessage<any>('address')),
       );
   }
